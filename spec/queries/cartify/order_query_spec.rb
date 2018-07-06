@@ -3,10 +3,10 @@ require 'rails_helper'
 module Cartify
   RSpec.describe OrdersQuery, type: :model do
     before(:all) do
-      @user = FactoryGirl.create(:customer)
-      in_delivery = FactoryGirl.create(:order_status, name: 'in_delivery')
-      3.times { FactoryGirl.create(:order, :in_progress, user: @user) }
-      2.times { FactoryGirl.create(:order, order_status: in_delivery, user: @user) }
+      @user = create(:customer)
+      in_delivery = create(:order_status, name: 'in_delivery')
+      3.times { create(:order, :in_progress, user: @user) }
+      2.times { create(:order, order_status: in_delivery, user: @user) }
     end
     subject { Cartify::OrdersQuery.new(@user.orders) }
 

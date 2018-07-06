@@ -1,5 +1,5 @@
 module Cartify
-  class AddressesController < ApplicationController
+  class AddressesController < Cartify::ApplicationController
     def index
       @addresses = Cartify::AddressesForm.new(user_id: cartify_current_user.id)
     end

@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :product, class: 'Product' do
     transient do
       cost 555.55

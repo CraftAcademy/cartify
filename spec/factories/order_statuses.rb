@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :order_status, class: 'Cartify::OrderStatus' do
     sequence(:name) { |i| "status_#{i}" }
 

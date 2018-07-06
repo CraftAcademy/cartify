@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :order, class: 'Cartify::Order' do
     subtotal 1
     total 1
@@ -10,7 +10,7 @@ FactoryGirl.define do
     trait :in_progress do
       after(:create) do |order|
         order.order_status = Cartify::OrderStatus.find_by(name: :in_progress) ||
-                             FactoryGirl.create(:order_status, :in_progress)
+                             create(:order_status, :in_progress)
         order.save!
       end
     end
@@ -18,7 +18,7 @@ FactoryGirl.define do
     trait :delivered do
       after(:create) do |order|
         order.order_status = Cartify::OrderStatus.find_by(name: :delivered) ||
-                             FactoryGirl.create(:order_status, :delivered)
+                             create(:order_status, :delivered)
         order.save!
       end
     end
@@ -26,14 +26,14 @@ FactoryGirl.define do
     trait :in_queue do
       after(:create) do |order|
         order.order_status = Cartify::OrderStatus.find_by(name: :in_queue) ||
-                             FactoryGirl.create(:order_status, :in_queue)
+                             create(:order_status, :in_queue)
         order.save!
       end
     end
 
     trait :with_order_item do
       after(:create) do |order|
-        order.order_items = FactoryGirl.create_list(:order_item, 2)
+        order.order_items = create_list(:order_item, 2)
         order.save!
       end
     end

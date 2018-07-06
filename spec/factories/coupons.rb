@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :coupon, class: 'Cartify::Coupon' do
     transient do
       value 9.99

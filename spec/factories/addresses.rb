@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   ADDRESSES_TYPE = %w[Cartify::Billing Cartify::Shipping].freeze
 
   factory :address, class: 'Cartify::Address' do

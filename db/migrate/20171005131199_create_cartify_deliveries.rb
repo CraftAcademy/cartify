@@ -1,4 +1,4 @@
-class CreateCartifyDeliveries < ActiveRecord::Migration[5.1]
+class CreateCartifyDeliveries < ActiveRecord::Migration[5.2]
   def change
     create_table :cartify_deliveries do |t|
       t.string :name

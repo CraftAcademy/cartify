@@ -2,7 +2,7 @@ require 'capybara/rspec'
 require 'capybara-webkit'
 require 'capybara/webkit/matchers'
 require 'transactional_capybara/rspec'
-require 'factory_girl_rails'
+#require 'factory_bot_rails'
 require 'database_cleaner'
 Capybara.javascript_driver = :webkit
 Capybara.default_max_wait_time = 5
@@ -17,7 +17,7 @@ RSpec.configure do |config|
 
   config.shared_context_metadata_behavior = :apply_to_host_groups
   config.default_formatter = 'doc' if config.files_to_run.one?
-  config.include FactoryGirl::Syntax::Methods
+  #config.include FactoryBot::Syntax::Methods
   config.before(:suite) do
     DatabaseCleaner.clean_with :truncation
     DatabaseCleaner.strategy = :transaction

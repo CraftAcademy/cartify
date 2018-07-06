@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :credit_card, class: 'Cartify::CreditCard' do
     number '1234567891234567'
     name 'name on card'

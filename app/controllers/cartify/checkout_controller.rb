@@ -1,7 +1,7 @@
 require_dependency 'cartify/application_controller'
 
 module Cartify
-  class CheckoutController < ApplicationController
+  class CheckoutController < Cartify::ApplicationController
     before_action :fast_authentification!
     include Wicked::Wizard
     include Showable

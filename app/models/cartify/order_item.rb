@@ -14,7 +14,7 @@ module Cartify
 
     def unit_price
       return self[:unit_price] if persisted?
-      product.price
+      product.send(Cartify.price_attribute)
     end
 
     def total_price

@@ -1,7 +1,7 @@
 require_dependency 'cartify/application_controller'
 
 module Cartify
-  class CartsController < ApplicationController
+  class CartsController < Cartify::ApplicationController
     def show
       @order_items = current_order.order_items
     end

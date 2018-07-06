@@ -1,4 +1,4 @@
-class CreateCartifyOrderItems < ActiveRecord::Migration[5.1]
+class CreateCartifyOrderItems < ActiveRecord::Migration[5.2]
   def change
     create_table :cartify_order_items do |t|
       t.integer :quantity

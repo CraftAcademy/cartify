@@ -5,12 +5,12 @@
         = link_to main_app.product_path(order_item.product)
     %td
       = link_to main_app.product_path(order_item.product), class: 'text-as-link' do
-        %p.title= order_item.product.title
+        %p.title= order_item.product.send(Cartify.title_attribute)
     %td
-      %span.font-16.in-gold-500= number_to_currency(order_item.product.price)
+      %span.font-16.in-gold-500= number_to_currency(order_item.product.send(Cartify.price_attribute))
     = render 'cartify/carts/quantity', order_item: order_item
     %td
       %span.font-16.in-gold-500= number_to_currency(order_item.total_price)
     %td
-      = button_to cartify.order_item_path(order_item), { data: { confirm: "Are you sure you wish to delete the product '#{order_item.product.title}' from your cart?" }, method: :delete, remote: true, class: "close general-cart-close", 'aria-label': 'Close' } do
+      = button_to cartify.order_item_path(order_item), { data: { confirm: "Are you sure you wish to delete the product '#{order_item.product.send(Cartify.title_attribute)}' from your cart?" }, method: :delete, remote: true, class: "close general-cart-close", 'aria-label': 'Close' } do
         %span{'aria-hidden': "true"} &times;

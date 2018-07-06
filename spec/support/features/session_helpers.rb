@@ -1,7 +1,7 @@
 module Features
   module SessionHelpers
     def sign_up_with(email, password)
-      customer = FactoryGirl.attributes_for(:customer)
+      customer = attributes_for(:customer)
       visit new_customer_session_path
       fill_in 'Email', with: email || customer.email
       fill_in 'Password', with: password || customer.password
@@ -10,7 +10,7 @@ module Features
     end
 
     def sign_in_as_user
-      customer = FactoryGirl.create(:customer)
+      customer = create(:customer)
       visit new_customer_session_path
       fill_in 'Email', with: customer.email
       fill_in 'Password', with: customer.password

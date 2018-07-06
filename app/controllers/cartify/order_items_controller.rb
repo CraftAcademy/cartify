@@ -1,7 +1,7 @@
 require_dependency 'cartify/application_controller'
 
 module Cartify
-  class OrderItemsController < ApplicationController
+  class OrderItemsController < Cartify::ApplicationController
     def create
       current_order.save
       @order_item = current_order.order_items.find_or_initialize_by(product_id: order_item_params[:product_id])

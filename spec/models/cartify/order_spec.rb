@@ -10,8 +10,8 @@ module Cartify
     it { expect(subject).to belong_to :delivery }
 
     it 'set order status before create' do
-      subject.user_id = FactoryGirl.create(:customer).id
-      subject.order_status_id = FactoryGirl.create(:order_status).id
+      subject.user_id = create(:customer).id
+      subject.order_status_id = create(:order_status).id
       expect(subject).to receive :set_order_status
       subject.save!
     end
@@ -23,9 +23,9 @@ module Cartify
 
     describe 'scopes' do
       before(:all) do
-        @order = FactoryGirl.create(:order, :in_progress)
+        @order = create(:order, :in_progress)
         @wrong_ids = []
-        2.times { @wrong_ids << FactoryGirl.create(:order, :delivered).id }
+        2.times { @wrong_ids << create(:order, :delivered).id }
       end
 
       context 'order_id where status in progress' do
@@ -51,7 +51,7 @@ module Cartify
       end
 
       context 'find processing_order "in_queue" for last checkout step' do
-        before { FactoryGirl.create(:order, :in_queue) }
+        before { create(:order, :in_queue) }
         it 'finds processing_order' do
           expect(Cartify::Order.processing_order.order_status.name).to eq 'in_queue'
         end
@@ -76,10 +76,10 @@ module Cartify
       end
 
       describe '#discount' do
-        let(:order) { FactoryGirl.create(:order, coupon: coupon) }
+        let(:order) { create(:order, coupon: coupon) }
 
         context 'when apply coupon' do
-          let(:coupon) { FactoryGirl.create(:coupon, value: 7.00) }
+          let(:coupon) { create(:coupon, value: 7.00) }
           it 'return amount of discount' do
             expect(order.discount).to eq 7.00
           end
@@ -95,11 +95,11 @@ module Cartify
       end
 
       describe '#subtotal' do
-        let(:product) { FactoryGirl.create(:product, cost: 3.5) }
-        let(:order_item) { FactoryGirl.create(:order_item, product: product, quantity: 2) }
+        let(:product) { create(:product, cost: 3.5) }
+        let(:order_item) { create(:order_item, product: product, quantity: 2) }
 
         it 'sum all items in order' do
-          subject = FactoryGirl.build(:order, order_items: [order_item])
+          subject = build(:order, order_items: [order_item])
           expect(subject.subtotal.to_f).to eq 7.0
         end
       end
@@ -112,10 +112,10 @@ module Cartify
       end
 
       describe '#shipping_price' do
-        let(:type) { FactoryGirl.create(:delivery, price: 12.22) }
+        let(:type) { create(:delivery, price: 12.22) }
 
         it 'return shipping price' do
-          subject = FactoryGirl.create(:order, delivery: type)
+          subject = create(:order, delivery: type)
           expect(subject.shipping_price).to eq 12.22
         end
       end
@@ -128,7 +128,7 @@ module Cartify
       end
 
       describe '#finalize' do
-        let(:order_in_progress) { FactoryGirl.create(:order, :in_progress) }
+        let(:order_in_progress) { create(:order, :in_progress) }
 
         it { expect(order_in_progress.order_status.name).to eq 'in_progress' }
 

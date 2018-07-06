@@ -1,7 +1,7 @@
 require_dependency 'cartify/application_controller'
 
 module Cartify
-  class OrdersController < ApplicationController
+  class OrdersController < Cartify::ApplicationController
     before_action :cartify_authenticate_user!
 
     def index

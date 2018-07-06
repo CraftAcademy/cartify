@@ -2,11 +2,11 @@ require 'rails_helper'
 
 module Cartify
   RSpec.feature 'End to end checkout process', type: :feature do
-    let(:user) { FactoryGirl.create(:customer) }
+    let(:user) { create(:customer) }
 
     before do
-      FactoryGirl.create(:product)
-      FactoryGirl.create_list(:delivery, 3)
+      create(:product)
+      create_list(:delivery, 3)
     end
 
     it 'allow to pass all steps in checkout', js: true do
@@ -35,7 +35,6 @@ module Cartify
         fill_in 'addresses_form[shipping][zip]', with: '32158'
         select('Spain', from: 'addresses_form[billing][country]')
         fill_in 'addresses_form[shipping][phone]', with: '+112 34 567 8998'
-
         find('input[name="commit"]').click
       end
 

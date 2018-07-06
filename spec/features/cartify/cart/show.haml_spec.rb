@@ -32,7 +32,7 @@ module Cartify
       end
 
       before do
-        @order_item = FactoryGirl.create(:order_item)
+        @order_item = create(:order_item)
         inject_session order_id: @order_item.order.id
         visit cartify.cart_path
       end
@@ -84,7 +84,7 @@ module Cartify
 
       describe 'Coupon' do
         context 'upply valid coupon' do
-          let(:coupon) { FactoryGirl.create(:coupon, name: 'valid_coupon_ok', value: 99.9) }
+          let(:coupon) { create(:coupon, name: 'valid_coupon_ok', value: 99.9) }
 
           before do
             fill_in I18n.t('cart.coupon'), with: coupon.name

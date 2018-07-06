@@ -3,9 +3,9 @@ require 'rails_helper'
 module Cartify
   RSpec.describe OrderItemsController, type: :controller do
     routes { Cartify::Engine.routes }
-    let!(:user) { FactoryGirl.create(:customer) }
-    let!(:order) { FactoryGirl.create(:order, :in_progress, :with_order_item, user_id: user.id) }
-    let(:product) { FactoryGirl.create(:product) }
+    let!(:user) { create(:customer) }
+    let!(:order) { create(:order, :in_progress, :with_order_item, user_id: user.id) }
+    let(:product) { create(:product) }
     before { sign_in(user) }
 
     describe 'POST #create' do

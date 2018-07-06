@@ -5,7 +5,7 @@ module Cartify
     include_examples 'address_validations'
 
     describe 'scopes' do
-      before(:all) { FactoryGirl.create_list(:address, 6) }
+      before(:all) { create_list(:address, 6) }
 
       describe 'shipping' do
         subject { Address.shipping }

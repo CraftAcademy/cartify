@@ -2,7 +2,7 @@ require 'rails_helper'
 
 module Cartify
   RSpec.feature 'Orders', type: :feature do
-    let(:user) { FactoryGirl.create(:customer) }
+    let(:user) { create(:customer) }
 
     context 'User signed out' do
       it 'redirect to sign_in path' do
@@ -13,7 +13,7 @@ module Cartify
 
     context 'registered user' do
       before do
-        FactoryGirl.create(:order, :delivered, user_id: user.id)
+        create(:order, :delivered, user_id: user.id)
         sign_in(user)
         visit cartify.orders_path
       end

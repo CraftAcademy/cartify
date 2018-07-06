@@ -13,8 +13,9 @@ require 'shoulda/matchers'
 require 'ffaker'
 require 'rails-controller-testing'
 require 'shoulda-callback-matchers'
-FactoryGirl.definition_file_paths << File.join(File.dirname(__FILE__), 'factories')
-FactoryGirl.find_definitions
+require 'factory_bot_rails'
+#FactoryBot.definition_file_paths << File.join(File.dirname(__FILE__), 'factories')
+#FactoryBot.find_definitions
 
 REQUIRED_DIRS = %w[
   support
@@ -25,8 +26,6 @@ REQUIRED_DIRS = %w[
 REQUIRED_DIRS.each do |path|
   Dir[Rails.root.sub('dummy', "/#{path}/**/*.rb")].each { |f| require f }
 end
-
-ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
   config.include TransactionalCapybara::AjaxHelpers
@@ -40,7 +39,7 @@ RSpec.configure do |config|
   config.include Shoulda::Matchers::ActiveModel, type: :model
   config.include Shoulda::Matchers::ActiveRecord, type: :model
   config.include Shoulda::Callback::Matchers::ActiveModel
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
   config.include Capybara::Webkit::RspecMatchers, type: :feature
   config.include InjectSession, type: :feature
 end

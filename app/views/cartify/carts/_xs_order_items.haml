@@ -1,18 +1,18 @@
 - @order_items.each do |order_item|
   .general-cart-item.divider-lg-bottom
-    = button_to order_items_path(order_item), { data: { confirm: "Are you sure you wish to delete the book '#{order_item.product.title}' from your cart?" }, method: :delete, remote: true, class: "close general-cart-close", 'aria-label': 'Close' } do
+    = button_to order_items_path(order_item), { data: { confirm: "Are you sure you wish to delete the book '#{order_item.product.send(Cartify.title_attribute)}' from your cart?" }, method: :delete, remote: true, class: "close general-cart-close", 'aria-label': 'Close' } do
       %span{'aria-hidden': "true"} &times;
     .general-img-wrap-table
-      = link_to main_app.book_path(order_item.product) do
-        = image_tag img_of(order_item.product), alt: 'design-book', class: 'cart-img-shadow'
-    = link_to main_app.book_path(order_item.product), class: 'text-as-link' do
-      %p.title= order_item.product.title
+      = link_to main_app.send("#{Cartify.product_class.to_s.underscore}_path", order_item.product) do 
+        = image_tag image_for(order_item.product), alt: 'design-book', class: 'cart-img-shadow'
+    = link_to main_app.send("#{Cartify.product_class.to_s.underscore}_path", order_item.product), class: 'text-as-link' do
+      %p.title= order_item.product.send(Cartify.title_attribute)
     %table.table
       %tr
         %td
           %span.in-grey-600= t('cart.price')
         %td
-          %span.font-16.in-gold-500= number_to_currency(order_item.product.price)
+          %span.font-16.in-gold-500= number_to_currency(order_item.product.send(Cartify.price_attribute))
       %tr
         %td.vertical-middle
           %span.in-grey-600= t('cart.quantity')

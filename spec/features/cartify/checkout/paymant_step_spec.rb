@@ -2,11 +2,11 @@ require 'rails_helper'
 
 module Cartify
   RSpec.feature 'Paymant step', type: :feature do
-    let(:user) { FactoryGirl.create(:customer) }
+    let(:user) { create(:customer) }
 
     before do
-      FactoryGirl.create(:product)
-      FactoryGirl.create(:delivery)
+      create(:product)
+      create(:delivery)
     end
 
     it 'allow pass paymant step', js: true do

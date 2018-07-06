@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171009153554) do
+ActiveRecord::Schema.define(version: 2017_10_09_153554) do
 
   create_table "cartify_addresses", force: :cascade do |t|
     t.string "type"

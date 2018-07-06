@@ -2,14 +2,14 @@
   - current_order.order_items.each do |item|
     .general-cart-item.divider-lg
       .general-img-wrap-table
-      %p.title= item.product.title
-      %P.in-grey-600.fw-300= item.product.title
+      %p.title= item.product.send(Cartify.title_attribute)
+      %p.in-grey-600.fw-300= item.product.send(Cartify.title_attribute)
       %table.table
         %tr
           %td
             %span.in-grey-600= t('cart.price')
           %td
-            %span.font-16.in-gold-500= number_to_currency item.product.price
+            %span.font-16.in-gold-500= number_to_currency item.product.send(Cartify.price_attribute)
         %tr
           %td.vertical-middle
             %span.in-grey-600= t('cart.quantity')
@@ -39,9 +39,9 @@
           %td
             .general-img-wrap-table
           %td
-            %p.in-grey-600.fw-300= item.product.title
+            %p.in-grey-600.fw-300= item.product.send(Cartify.title_attribute)
           %td
-            %span.font-16.in-gold-500= number_to_currency item.product.price
+            %span.font-16.in-gold-500= number_to_currency item.product.send(Cartify.price_attribute)
           %td
             %span.ml-30= item.quantity
           %td

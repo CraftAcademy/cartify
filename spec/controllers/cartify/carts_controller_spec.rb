@@ -11,13 +11,13 @@ module Cartify
       end
 
       it 'return success response with show template' do
-        expect(response).to be_success
+        expect(response).to be_successful
         expect(response).to render_template :show
       end
     end
 
     describe 'POST #update' do
-      let!(:coupon) { FactoryGirl.create(:coupon, name: 'D12345678900000', value: 33.33) }
+      let!(:coupon) { create(:coupon, name: 'D12345678900000', value: 33.33) }
 
       it 'set coupon' do
         expect(controller).to receive(:coupon).at_least(:once)

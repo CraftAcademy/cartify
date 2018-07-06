@@ -2,7 +2,7 @@ require 'rails_helper'
 
 module Cartify
   RSpec.feature 'settings Addresses tab', type: :feature do
-    let(:user) { FactoryGirl.create(:customer) }
+    let(:user) { create(:customer) }
 
     before do
       sign_in(user)

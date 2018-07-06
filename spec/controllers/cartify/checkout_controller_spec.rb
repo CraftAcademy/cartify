@@ -3,11 +3,11 @@ require 'rails_helper'
 module Cartify
   RSpec.describe CheckoutController, type: :controller do
     routes { Cartify::Engine.routes }
-    let!(:user) { FactoryGirl.create(:customer) }
+    let!(:user) { create(:customer) }
     before { sign_in(user) }
 
     describe 'GET #show' do
-      let!(:order) { FactoryGirl.create(:order, :in_progress, :with_order_item, user_id: user.id) }
+      let!(:order) { create(:order, :in_progress, :with_order_item, user_id: user.id) }
 
       describe 'addresses tab' do
         before { get :show, params: { id: :addresses } }
@@ -27,7 +27,7 @@ module Cartify
 
       describe 'delivery tab' do
         before do
-          FactoryGirl.create(:address, order_id: order.id)
+          create(:address, order_id: order.id)
           get :show, params: { id: :delivery }
         end
 
@@ -61,7 +61,7 @@ module Cartify
       end
 
       describe 'confirm tab' do
-        let(:credit_card) { FactoryGirl.create(:credit_card) }
+        let(:credit_card) { create(:credit_card) }
         before do
           order.update(credit_card_id: credit_card.id)
           get :show, params: { id: :confirm }
@@ -96,11 +96,11 @@ module Cartify
     end
 
     describe 'PUT #update' do
-      let!(:order) { FactoryGirl.create(:order, :in_progress, :with_order_item, user_id: user.id) }
+      let!(:order) { create(:order, :in_progress, :with_order_item, user_id: user.id) }
 
       describe 'addresses' do
         before do
-          allow(AddressesForm).to receive(:new) { FactoryGirl.build(:address) }
+          allow(AddressesForm).to receive(:new) { build(:address) }
           put :update, params: { id: :addresses, addresses_form: true }
         end
 
@@ -115,7 +115,7 @@ module Cartify
 
       describe 'delivery' do
         before do
-          delivery = FactoryGirl.create(:delivery)
+          delivery = create(:delivery)
           put :update, params: { id: :delivery, order: { delivery_id: delivery.id } }
         end
 
@@ -126,7 +126,7 @@ module Cartify
 
       describe 'payment' do
         before do
-          credit_card_attributes = FactoryGirl.attributes_for(:credit_card)
+          credit_card_attributes = attributes_for(:credit_card)
           put :update, params: { id: :payment, credit_card: credit_card_attributes }
         end
 

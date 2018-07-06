@@ -1,4 +1,4 @@
-class CreateCartifyOrders < ActiveRecord::Migration[5.1]
+class CreateCartifyOrders < ActiveRecord::Migration[5.2]
   def change
     create_table :cartify_orders do |t|
       t.decimal :subtotal, precision: 8, scale: 2

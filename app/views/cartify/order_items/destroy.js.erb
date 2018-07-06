@@ -1,3 +1,4 @@
 
 $('main.container.general-main-wrap').replaceWith("<%= j(render template: 'cartify/carts/show') %>")
-$('span.shop-icon').html("<%= j(shop_icon_quantity) %>")
+document.getElementById('order-details').innerHTML = "<%= pluralize(current_order.order_items.reload.collect(&:quantity).compact.sum, 'item') %>";
+

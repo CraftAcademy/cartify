@@ -1,10 +1,10 @@
 %p#notice= notice
 %p
   %strong Title:
-  = @product.title
+  = @product.send(Cartify.title_attribute)
 %p
   %strong Price:
-  = @product.price
+  = @product.send(Cartify.price_attribute)
 = link_to 'Edit', edit_product_path(@product)
 |
 = link_to 'Back', products_path

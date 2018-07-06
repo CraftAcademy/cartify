@@ -2,16 +2,16 @@
   - current_order.order_items.each do |item|
     .general-cart-item.divider-lg
       .general-img-wrap-table
-        = link_to main_app.book_path(item.product) do
-          = image_tag img_of(item.product), alt: 'design-book', class: 'cart-img-shadow'
-      %p.title= item.product.title
+        = link_to main_app.send("#{Cartify.product_class.to_s.underscore}_path", item.product) do
+          = image_tag image_for(item.product), alt: 'design-book', class: 'cart-img-shadow'
+      %p.title= item.product.send(Cartify.title_attribute)
       %P.in-grey-600.fw-300= item.product.description.split('. ').first + '.'
       %table.table
         %tr
           %td
             %span.in-grey-600= t('cart.price')
           %td
-            %span.font-16.in-gold-500= number_to_currency item.product.price
+            %span.font-16.in-gold-500= number_to_currency item.product.send(Cartify.price_attribute)
         %tr
           %td.vertical-middle
             %span.in-grey-600= t('cart.quantity')
@@ -40,14 +40,14 @@
         %tr
           %td
             .general-img-wrap-table
-              = link_to main_app.book_path(item.product) do
-                = image_tag img_of(item.product), alt: 'design-book', class: 'cart-img-shadow pull-left'
+              = link_to main_app.send("#{Cartify.product_class.to_s.underscore}_path", item.product) do
+                = image_tag image_for(item.product), alt: 'design-book', class: 'cart-img-shadow pull-left'
           %td
-            = link_to main_app.book_path(item.product), class: 'text-as-link' do
-              %p.title= item.product.title
+            = link_to main_app.send("#{Cartify.product_class.to_s.underscore}_path", item.product), class: 'text-as-link' do
+              %p.title= item.product.send(Cartify.title_attribute)
             %p.in-grey-600.fw-300= item.product.description.split('. ').first + '.'
           %td
-            %span.font-16.in-gold-500= number_to_currency item.product.price
+            %span.font-16.in-gold-500= number_to_currency item.product.send(Cartify.price_attribute)
           %td
             %span.ml-30= item.quantity
           %td

@@ -3,8 +3,8 @@ require 'rails_helper'
 module Cartify
   RSpec.describe OrdersController, type: :controller do
     routes { Cartify::Engine.routes }
-    let(:user) { FactoryGirl.create(:customer) }
-    let(:order) { FactoryGirl.create(:order, :delivered, user_id: user.id) }
+    let(:user) { create(:customer) }
+    let(:order) { create(:order, :delivered, user_id: user.id) }
     before { sign_in(user) }
 
     describe 'GET #index' do
@@ -36,7 +36,7 @@ module Cartify
       end
 
       context 'order with status in_progress' do
-        let(:order_in_progress) { FactoryGirl.create(:order, :in_progress, user_id: user.id) }
+        let(:order_in_progress) { create(:order, :in_progress, user_id: user.id) }
         before { get :show, params: { id: order_in_progress.id } }
 
         it 'return redirect status code' do

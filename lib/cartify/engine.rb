@@ -13,7 +13,7 @@ module Cartify
 
     config.generators do |g|
       g.test_framework :rspec
-      g.fixture_replacement :factory_girl, dir: 'spec/factories'
+      g.fixture_replacement :factory_bot, dir: 'spec/factories'
       g.stylesheets false
       g.javascripts false
       g.template_engine :haml
@@ -21,8 +21,8 @@ module Cartify
 
     initializer :inject_helpers do
       ActiveSupport.on_load :action_controller do
-        ::ApplicationController.send(:helper, Cartify::Engine.helpers)
-        ::ApplicationController.send(:include, Cartify::CurrentSession)
+        #::ApplicationController.send(:helper, Cartify::Engine.helpers)
+        #::ApplicationController.send(:include, Cartify::CurrentSession)
       end
     end
   end

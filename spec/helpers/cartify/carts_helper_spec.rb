@@ -3,7 +3,7 @@ require 'rails_helper'
 module Cartify
   RSpec.describe CartsHelper, type: :helper do
     describe '#add_to_cart' do
-      let(:product) { FactoryGirl.create(:product) }
+      let(:product) { create(:product) }
 
       it 'generate link "Add to cart" by default' do
         expect(helper.add_to_cart(product)).to have_link('Add to cart')
