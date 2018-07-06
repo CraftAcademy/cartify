@@ -40,6 +40,6 @@ RSpec.configure do |config|
   config.include Shoulda::Matchers::ActiveRecord, type: :model
   config.include Shoulda::Callback::Matchers::ActiveModel
   config.include FactoryBot::Syntax::Methods
-  config.include Capybara::Webkit::RspecMatchers, type: :feature
+  # config.include Capybara::Webkit::RspecMatchers, type: :feature
   config.include InjectSession, type: :feature
 end

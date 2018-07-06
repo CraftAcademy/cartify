@@ -3,11 +3,12 @@
     .row
       .col-md-5.mb-40
         .visible-xs.visible-sm
-        .text-center
-          %h3.general-subtitle.mt-0= t('checkout.returning_customer')
-          %a.general-login-icon{ href: main_app.user_facebook_omniauth_authorize_path }
-            %i.fa.fa-facebook-official
-          %p.general-login-text= t('checkout.or')
+        - if main_app.respond_to?(:user_facebook_omniauth_authorize_path)
+          .text-center
+            %h3.general-subtitle.mt-0= t('checkout.returning_customer')
+            %a.general-login-icon{ href: main_app.user_facebook_omniauth_authorize_path }
+              %i.fa.fa-facebook-official
+            %p.general-login-text= t('checkout.or')
         = form_for(Cartify.user_class.new, url:  main_app.user_session_path, html: { class: 'general-form' }) do |f|
           .form-group.mb-40
             %p.fw-600= t('checkout.login_with_password')
@@ -21,11 +22,12 @@
           = f.submit t('checkout.login_with_password'), class: 'button btn btn-default mb-20'
       .col-md-5.mb-40
         .visible-xs.visible-sm
-        .text-center
-          %h3.general-subtitle.mt-0= t('checkout.new_customer')
-          %a.general-login-icon{href:  main_app.user_facebook_omniauth_authorize_path}
-            %i.fa.fa-facebook-official
-          %p.general-login-text= t('checkout.or')
+        - if main_app.respond_to?(:user_facebook_omniauth_authorize_path)
+          .text-center
+            %h3.general-subtitle.mt-0= t('checkout.new_customer')
+            %a.general-login-icon{href:  main_app.user_facebook_omniauth_authorize_path}
+              %i.fa.fa-facebook-official
+            %p.general-login-text= t('checkout.or')
         = form_for(Cartify.user_class.new, url:  main_app.user_registration_path, html: { class: 'general-form' }) do |f|
           .form-group.mb-40
             %p.fw-600= t('checkout.quick_register')

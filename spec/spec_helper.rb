@@ -1,10 +1,28 @@
 require 'capybara/rspec'
-require 'capybara-webkit'
-require 'capybara/webkit/matchers'
+# require 'capybara-webkit'
+# require 'capybara/webkit/matchers'
 require 'transactional_capybara/rspec'
 #require 'factory_bot_rails'
 require 'database_cleaner'
-Capybara.javascript_driver = :webkit
+#require 'chromedriver_helper'
+#Chromedriver.set_version '2.36' unless ENV['CI'] == 'true'
+
+chrome_options = %w(no-sandbox disable-popup-blocking disable-infobars)
+chrome_options << 'headless' if ENV['CI'] == 'true'
+
+Capybara.register_driver :chrome do |app|
+  options = Selenium::WebDriver::Chrome::Options.new(
+      args: chrome_options
+  )
+
+  Capybara::Selenium::Driver.new(
+      app,
+      browser: :chrome,
+      options: options
+  )
+end
+
+Capybara.javascript_driver = :chrome
 Capybara.default_max_wait_time = 5
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
