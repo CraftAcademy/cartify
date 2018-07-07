@@ -2,11 +2,9 @@ module Cartify
   module ApplicationHelper
     def shop_icon_quantity
       qty = current_order.order_items.reload.collect(&:quantity).compact.sum
-      if qty.zero?
-        "<span class='shop-quantity' id='order-details' title='Your order status'>You have not added any dishes yet!</span>".html_safe
-      else
+      unless qty.zero?
         "<span class='shop-quantity' id='order-details' title='You have #{pluralize(qty, 'item')} in your order.'>#{pluralize(qty, 'item')}</span>".html_safe
-      end 
+      end
     end
 
     def active_class(link_path)

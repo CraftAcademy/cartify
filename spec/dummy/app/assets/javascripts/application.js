@@ -12,5 +12,5 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require cartify/application.js
+//= require cartify/application
 //= require_tree .

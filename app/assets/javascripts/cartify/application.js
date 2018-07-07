@@ -17,6 +17,23 @@
 //= require tippy
 //= require_tree .
 
-document.addEventListener('turbolinks:load', function(){
+function reload() {
+    if ((typeof Turbolinks === 'undefined' || Turbolinks === null)) {
+        location.reload;
+    } else {
+        Turbolinks.visit(window.location, { action: 'replace' })
+        Turbolinks.clearCache();
+        Turbolinks.dispatch("turbolinks:load");
+    }
+
+}
+function clearNotifications() {
+    var noticeDiv = document.getElementById('notifications')
+    if (noticeDiv.length !== 0) {
+        noticeDiv.innerHTML = ''
+    }
+}
+
+document.addEventListener('turbolinks:load', function () {
     tippy('[title]')
 })

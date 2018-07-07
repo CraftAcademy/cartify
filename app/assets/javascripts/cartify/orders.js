@@ -1,11 +1,9 @@
-document.addEventListener('turbolinks:load', function() {
-    $(".clickable-row").click(function() {
-        debugger;
-        window.location = $(this).data("href");
-    });
-
-    document.addEventListener('click', function(){
-
-    })
-    tippy('[data-toggle="tooltip"]', { dynamicTitle: true });
+document.addEventListener('turbolinks:load', function () {
+    var element = document.querySelector(".clickable-row")
+    if (element !== null) {
+        element.addEventListener('click', function () {
+            window.location = $(this).data("href");
+        })
+    }
+    tippy('[data-toggle="tooltip"]');
 })

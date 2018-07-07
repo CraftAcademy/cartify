@@ -4,7 +4,15 @@ module Cartify
       link_to name,
               cartify.order_items_path(order_item: { quantity: qqty, product_id: product&.id }),
               method: :post,
-              remote: true
+              remote: true,
+              data: {turbolinks: false}
+    end
+
+    def checkout_link
+      qty = current_order.order_items.reload.collect(&:quantity).compact.sum
+      unless qty.zero?
+        link_to 'Checkout', cartify.checkout_index_path
+      end
     end
   end
 end
