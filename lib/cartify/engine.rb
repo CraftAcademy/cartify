@@ -8,6 +8,8 @@ module Cartify
     require 'draper'
     require 'devise'
     require 'haml-rails'
+    require 'tippy_rails'
+    require 'bootstrap'
 
     isolate_namespace Cartify
 

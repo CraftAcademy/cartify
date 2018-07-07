@@ -1,5 +1,9 @@
 <% if current_order.errors.any? || @order_item.errors.any? %>
   alert('You order is not valid!')
 <% else %>
-  document.getElementById('order-details').innerHTML = "<%= pluralize(current_order.order_items.reload.collect(&:quantity).compact.sum, 'item') %>";
+  var element = document.getElementById('order-details')
+  let message = "<%= pluralize(current_order.order_items.reload.collect(&:quantity).compact.sum, 'item') %>"
+  element.innerHTML = message;
+  element._tippy.popper.querySelector('.tippy-content').textContent = `You have ${message} in your order`
+  
 <% end %>

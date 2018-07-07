@@ -7,5 +7,5 @@ document.addEventListener('turbolinks:load', function() {
     document.addEventListener('click', function(){
 
     })
-    tippy('[data-toggle="tooltip"]');
+    tippy('[data-toggle="tooltip"]', { dynamicTitle: true });
 })
