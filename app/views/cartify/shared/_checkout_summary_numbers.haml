@@ -1,14 +1,14 @@
-%tr
+%tr{title: t('confirm.item_total')}
   %td
     %p.font-16= t('confirm.item_total')+':'
   %td
     %p.font-16= number_to_currency current_order.subtotal_item_total
 %tr
-  %td
+  %td{title: t('confirm.shipping')}
     %p.font-16= t('confirm.shipping')+':' unless step == :address
   %td
     %p.font-16= number_to_currency current_order.shipping_price unless step == :address
-%tr
+%tr{title: t('cart.total') }
   %td
     %strong.font-16= t('cart.total')+':'
   %td
