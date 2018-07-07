@@ -27,6 +27,17 @@ function reload() {
     }
 
 }
+
+
+function redirectTo(url) {
+    if ((typeof Turbolinks === 'undefined' || Turbolinks === null)) {
+        window.location = url;
+    } else {
+        Turbolinks.visit(url, { action: 'replace' })
+        Turbolinks.clearCache();
+        Turbolinks.dispatch("turbolinks:load");
+    }
+}
 function clearNotifications() {
     var noticeDiv = document.getElementById('notifications')
     if (noticeDiv.length !== 0) {

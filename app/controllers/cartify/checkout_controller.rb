@@ -16,7 +16,7 @@ module Cartify
     end
 
     def update
-      
+      current_order.update_attribute(:user, current_user) if current_step?(:addresses)
       send("update_#{step}")
       redirect_to next_wizard_path unless performed?
     end
@@ -24,7 +24,7 @@ module Cartify
     private
 
     def no_items_in_cart?
-      current_order.order_items.empty? && step != :complete
+      current_order.order_items.empty? && !current_step?(:complete)
     end
   end
 end

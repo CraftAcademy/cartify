@@ -2,6 +2,7 @@
   alert('You order is not valid!')
 <% else %>
   var element = document.getElementById('order-details')
+  var checkoutButton = document.getElementById('checkout-link')
   var message = "<%= pluralize(current_order.order_items.reload.collect(&:quantity).compact.sum, 'item') %>"
   if (element === null) {
     element = document.createElement('span');
@@ -10,6 +11,9 @@
     element.title = message
     document.body.insertBefore(element, document.body.firstChild);
     tippy(element)
+  }
+  if (checkoutButton === null) {
+    reload();
   }
   clearNotifications();
   element.innerHTML = message;

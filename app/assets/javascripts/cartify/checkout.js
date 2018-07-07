@@ -1,4 +1,4 @@
-$(document).ready(function() {
+document.addEventListener('turbolinks:load', function() {
   $(".clickable-step").click(function() {
     window.location = $(this).data("href");
   });

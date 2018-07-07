@@ -8,15 +8,12 @@
       %th
         %span.in-grey-600= t('delivery.price')
   %tbody
-    = f.collection_radio_buttons :delivery_id, @deliveries, :id, :name do |b|
-      %tr
+    = f.hidden_field :delivery_id
+    - @deliveries.each do |delivery| 
+      %tr.delivery-row{data:{delivery: delivery.id}}
         %td
-          .form-group.radio.mt-0.mb-0
-            = b.label(class: 'radio-label') do
-              = b.radio_button(class: 'radio-input', hidden: "true")
-              %span.radio-icon
-              %span.radio-text= b.text
+          %span= delivery.name
         %td
-          %span= b.object.duration
+          %span= delivery.duration
         %td
-          %span.font-16.in-gold-500= number_to_currency b.object.price
+          %span.font-16.in-gold-500= number_to_currency delivery.price
