@@ -1,5 +1,5 @@
 <% if current_order.errors.any? || @order_item.errors.any? %>
-  alert('You rder is not valid!')
+  alert('You order is not valid!')
 <% else %>
   document.getElementById('order-details').innerHTML = "<%= pluralize(current_order.order_items.reload.collect(&:quantity).compact.sum, 'item') %>";
 <% end %>

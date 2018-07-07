@@ -1,7 +1,11 @@
-$(document).ready(function() {
-  $(".clickable-row").click(function() {
-    window.location = $(this).data("href");
-  });
+document.addEventListener('turbolinks:load', function() {
+    $(".clickable-row").click(function() {
+        debugger;
+        window.location = $(this).data("href");
+    });
 
-  $('[data-toggle="tooltip"]').tooltip();
-});
+    document.addEventListener('click', function(){
+
+    })
+    tippy('[data-toggle="tooltip"]');
+})

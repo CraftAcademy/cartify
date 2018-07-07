@@ -11,4 +11,5 @@
 // about supported directives.
 //
 //= require jquery.mask
+//= require tippy
 //= require_tree .

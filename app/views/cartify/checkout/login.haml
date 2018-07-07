@@ -9,7 +9,7 @@
             %a.general-login-icon{ href: main_app.user_facebook_omniauth_authorize_path }
               %i.fa.fa-facebook-official
             %p.general-login-text= t('checkout.or')
-        = form_for(Cartify.user_class.new, url:  main_app.user_session_path, html: { class: 'general-form' }) do |f|
+        = form_with url:  main_app.user_session_path, scope: :user, local: true, class: 'general-form' do |f|
           .form-group.mb-40
             %p.fw-600= t('checkout.login_with_password')
             = f.label :email, t('checkout.enter_email'), class: 'control-label input-label'
@@ -28,7 +28,7 @@
             %a.general-login-icon{href:  main_app.user_facebook_omniauth_authorize_path}
               %i.fa.fa-facebook-official
             %p.general-login-text= t('checkout.or')
-        = form_for(Cartify.user_class.new, url:  main_app.user_registration_path, html: { class: 'general-form' }) do |f|
+        = form_with url:  main_app.user_registration_path, scope: :user, local: true, class: 'general-form' do |f|
           .form-group.mb-40
             %p.fw-600= t('checkout.quick_register')
             %p.fw-300= t('checkout.quick_description')

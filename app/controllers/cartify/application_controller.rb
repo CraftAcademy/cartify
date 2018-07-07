@@ -3,6 +3,6 @@ module Cartify
     protect_from_forgery with: :exception
     include Cartify::Authenticatable
 
-    respond_to :html
+    respond_to :html, :js
   end
 end
