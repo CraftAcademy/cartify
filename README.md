@@ -19,24 +19,31 @@ $ bundle
 
 ## Configuration and usage
 Run initializer:
+
 ```bash
-$ rails g initializer
+$ rails g cartify:install
 ```
-Clone migrations:
+This will create the initializer for Cartify (`config/initializers/cartify.rb`). 
+
+Clone the necessay migrations:
+
 ```bash
 $ rails cartify:install:migrations
 ```
 Run the migrations:
+
 ```bash
 $ rails db:migrate
 ```
 
-If you don't have a User model, generate a simple one:
+Note that Cartify need to authenticate a user and depends on [Devise](https://github.com/plataformatec/devise). If you don't have a User model, generate a simple one to start with and configure Devise at a later stage.
+
 ```bash
 $ rails g model user name:string
 ```
 
-Define associations in your "User" model:
+Modify your "User" model and define the necessary associations for Cartify:
+
 ```ruby
 class User < ApplicationRecord
     has_many :orders, class_name: 'Cartify::Order', foreign_key: :user_id
@@ -45,14 +52,16 @@ class User < ApplicationRecord
     has_many :addresses, class_name: 'Cartify::Address', foreign_key: :user_id
 end
 ```
-Configure the Cartify initializer (found in `config/initializers/cartify.rb`)
+Configure the Cartify initializer (found in `config/initializers/cartify.rb`) with the settings that suite your application structure:
+
 ```ruby
 Cartify.product_class = 'Product'
 Cartify.user_class = 'User'
-Cartify.empty_cart_path = 'cart_path'
+Cartify.empty_cart_path = 'root_path'
 Cartify.title_attribute = :name
 Cartify.price_attribute = :price
 ```
+
 Mount Cartify as an engine in `config/routes.rb` and make sure you have a `show` action for your product class defined:
 
 ```ruby
