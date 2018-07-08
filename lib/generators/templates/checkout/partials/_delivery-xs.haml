@@ -1,0 +1,22 @@
+= f.collection_radio_buttons :delivery_id, @deliveries, :id, :name do |b|
+  .general-cart-item.divider-lg-bottom
+    %table.table
+      %tr
+        %td.col-half
+          %span.in-grey-600= t('delivery.method')
+        %td.col-half
+          .form-group.radio.mt-0.mb-0
+            = b.label(class: 'radio-label') do
+              = b.radio_button(class: 'radio-input')
+              %span.radio-icon
+              %span.radio-text= b.text
+      %tr
+        %td
+          %span.in-grey-600= t('delivery.days')
+        %td
+          %span.font-16.fw-300= b.object.duration
+      %tr
+        %td
+          %span.in-grey-600= t('delivery.price')
+        %td
+          %span.font-16.in-gold-500= number_to_currency b.object.price

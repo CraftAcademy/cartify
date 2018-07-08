@@ -1,0 +1,20 @@
+= render 'cartify/checkout/progress'
+%h3 Custom template 
+%p (please modify with your own css)
+%div
+  %h3= t('complete.thanks')
+  %p= t('complete.has_been_sent_to') + @order.user.email.capitalize
+.row.mb-20
+  .col-sm-6
+    .visible-xs
+      %p.general-order-number.mb-0= @order.sharp_number
+      %p.general-address.mb-30= @order.creation_date
+    = render 'cartify/checkout/partials/addresses_short', address: @order.shipping
+  .col-sm-6.hidden-xs.text-right
+    %p.general-order-number.mb-0= @order.sharp_number
+    %p.general-address.mb-30= @order.creation_date
+= render 'cartify/checkout/partials/list_of_items', current_order: @order
+.mb-55
+= render 'cartify/checkout/order_summary', current_order: @order
+.text-center
+  = link_to t('button.back_to_store'), next_wizard_path, class: 'btn btn-default mb-20'

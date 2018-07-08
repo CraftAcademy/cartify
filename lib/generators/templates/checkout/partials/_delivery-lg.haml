@@ -1,0 +1,19 @@
+%table.table.table-hover
+  %thead
+    %tr
+      %th.col-method
+        %span.in-grey-600.ml-40= t('delivery.method')
+      %th
+        %span.in-grey-600= t('delivery.days')
+      %th
+        %span.in-grey-600= t('delivery.price')
+  %tbody
+    = f.hidden_field :delivery_id
+    - @deliveries.each do |delivery| 
+      %tr.delivery-row{data:{delivery: delivery.id}}
+        %td
+          %span= delivery.name
+        %td
+          %span= delivery.duration
+        %td
+          %span.font-16.in-gold-500= number_to_currency delivery.price

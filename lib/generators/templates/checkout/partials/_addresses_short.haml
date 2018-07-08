@@ -1,0 +1,12 @@
+%p.general-address
+  = address.first_name + ' ' + address.last_name
+  - if step != :complete
+    %span.general-edit.clickable-step{ 'data-href': wizard_path(:addresses) }=t('confirm.edit')
+  %br
+  = address.address
+  %br
+  = address.city + ' ' + address.zip.to_s
+  %br
+  = country_name address
+  %br
+  = 'Phone ' + address.phone

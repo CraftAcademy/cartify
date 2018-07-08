@@ -1,0 +1,56 @@
+.visible-xs
+  - current_order.order_items.each do |item|
+    .general-cart-item.divider-lg
+      .general-img-wrap-table
+        = link_to main_app.send("#{Cartify.product_class.to_s.underscore}_path", item.product) do
+          = image_tag image_for(item.product), alt: 'design-book', class: 'cart-img-shadow'
+      %p.title= item.product.send(Cartify.title_attribute)
+      - if item.product.respond_to?(:description)
+        %p.in-grey-600.fw-300= item.product.description.split('. ').first + '.'
+      %table.table
+        %tr
+          %td
+            %span.in-grey-600= t('cart.price')
+          %td
+            %span.font-16.in-gold-500= number_to_currency item.product.send(Cartify.price_attribute)
+        %tr
+          %td.vertical-middle
+            %span.in-grey-600= t('cart.quantity')
+          %td
+            %span= item.quantity
+        %tr
+          %td
+            %span.in-grey-600= t('order.total')
+          %td
+            %span.font-16.in-gold-500= number_to_currency item.total_price
+.hidden-xs.divider-lg.pt-20
+  %table.table.table-hover
+    %thead
+      %tr
+        %th
+          %span.in-grey-600= Cartify.product_class.to_s
+        %th.col-method
+        %th
+          %span.in-grey-600= t('cart.price')
+        %th
+          %span.in-grey-600= t('cart.quantity')
+        %th
+          %span.in-grey-600= t('order.total')
+    %tbody
+      - current_order.order_items.each do |item|
+        %tr
+          %td
+            .general-img-wrap-table
+              = link_to main_app.send("#{Cartify.product_class.to_s.underscore}_path", item.product) do
+                = image_tag image_for(item.product), alt: 'design-book', class: 'cart-img-shadow pull-left'
+          %td
+            = link_to main_app.send("#{Cartify.product_class.to_s.underscore}_path", item.product), class: 'text-as-link' do
+              %p.title= item.product.send(Cartify.title_attribute)
+            - if item.product.respond_to?(:description)
+              %p.in-grey-600.fw-300= item.product.description.split('. ').first + '.'
+          %td
+            %span.font-16.in-gold-500= number_to_currency item.product.send(Cartify.price_attribute)
+          %td
+            %span.ml-30= item.quantity
+          %td
+            %span.font-16.in-gold-500= number_to_currency item.total_price
