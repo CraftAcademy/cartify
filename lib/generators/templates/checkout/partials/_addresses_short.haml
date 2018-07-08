@@ -1,7 +1,7 @@
-%p.general-address
+%p
   = address.first_name + ' ' + address.last_name
   - if step != :complete
-    %span.general-edit.clickable-step{ 'data-href': wizard_path(:addresses) }=t('confirm.edit')
+    %span.clickable-step{ 'data-href': wizard_path(:addresses) }=t('confirm.edit')
   %br
   = address.address
   %br
