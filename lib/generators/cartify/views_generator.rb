@@ -1,7 +1,7 @@
 module Cartify
     class ViewsGenerator < Rails::Generators::Base
         source_root File.expand_path('../../templates', __FILE__)
-        class_option :scope, type: :string, default: 'all'
+        class_option :scope, type: :string, default: 'checkout_views'
 
         def setup
             @scope = options['scope']
@@ -21,7 +21,7 @@ module Cartify
 
         def copy_checkout_views
             template 'checkout/login.html.haml', 'app/views/cartify/checkout/login.html.haml'
-            template 'checkout/adresses.html.haml', 'app/views/cartify/checkout/adresses.html.haml'
+            template 'checkout/addresses.html.haml', 'app/views/cartify/checkout/addresses.html.haml'
             template 'checkout/confirm.html.haml', 'app/views/cartify/checkout/confirm.html.haml'
             template 'checkout/delivery.html.haml', 'app/views/cartify/checkout/delivery.html.haml'
             template 'checkout/complete.html.haml', 'app/views/cartify/checkout/complete.html.haml'

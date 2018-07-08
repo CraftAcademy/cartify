@@ -21,9 +21,9 @@ $ bundle
 Run initializer:
 
 ```bash
-$ rails g cartify:install
+$ rails generate cartify:install
 ```
-This will create the initializer for Cartify (`config/initializers/cartify.rb`). 
+This will create the initializer for Cartify (`config/initializers/cartify.rb`) and make modifications to your routes table (`config/routes.rb`) and your main JavaScript file (`app/assets/javascripts/application.js`).
 
 Clone the necessay migrations:
 
@@ -62,7 +62,7 @@ Cartify.title_attribute = :name
 Cartify.price_attribute = :price
 ```
 
-Mount Cartify as an engine in `config/routes.rb` and make sure you have a `show` action for your product class defined:
+If you did not run `rails generate cartify:install`, then make sure to mount Cartify as an engine in `config/routes.rb` and make sure you have a `show` action for your product class defined:
 
 ```ruby
 Rails.application.routes.draw do
@@ -70,12 +70,10 @@ Rails.application.routes.draw do
   resources :products, only: [:show]
 end
 ```
-
-
-Note, if you don't have a controller for your products, you can use a generator to create one:
+Note, if you don't have a controller for your products, you can use a generator to create one (some of the Cartify view templates links to the show page of your product class.
 
 ```bash
-$ rails g controller products show
+$ rails g controller products show # or whatever class you use for products
 ```
 
 Modify your `ApplicationController` to include the Cartify methods and helpers:
@@ -85,6 +83,25 @@ class ApplicationController < ActionController::Base
     helper Cartify::Engine.helpers
     include Cartify::CurrentSession
 end
+```
+## Views
+Cartify comes with a full set of views. If you want to modify them, you can copy selected ones to your application (`app/views/cartify`). The most relevant views are related to the checkout flow. You can copy them using a generator:
+
+```bash
+To copy views:
+$ rails generate cartify:views --scope checkout_views 
+
+To copy partials:
+$ rails generate cartify:views --scope checkout_partials
+
+To copy both partials and views:
+$ rails generate cartify:views --scope all 
+```
+
+This generator comes with a custom flag: `scope`. You can use it to copy the vies, the partials or both:
+
+```
+$ rails generate cartify:views
 ```
 
 ## Available helpers
@@ -116,9 +133,15 @@ end
     link_to cartify.order_items_path(order_item: {quantity: 7, product_id: product.id}), 
       { method: :post, remote: true }
    ```
+
+### Link to checkout
+
+```
+checkout_link
+```
 ## ToDo
 * Move away from jQuery - refactor all js code to use vanilla JavaScript only
-* Fix Authentication and OAuth functionality
+
 
 ## License
 This gem is based on the [initial Cartify gem](https://rubygems.org/gems/cartify/versions/0.1.0).
