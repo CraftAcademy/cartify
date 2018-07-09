@@ -66,7 +66,7 @@ en:
   order:
     my_orders: 'My Orders'
     number: 'Number'
-    complited_at: 'Completed at'
+    completed_at: 'Completed at'
     statuss: 'Status'
     total: 'Total'
     status:

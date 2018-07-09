@@ -9,7 +9,7 @@ module Cartify
       canceled: I18n.t('order.status.canceled')
     }.freeze
 
-    def complited_at
+    def completed_at
       object.updated_at.strftime('%F')
     end
 
