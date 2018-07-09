@@ -21,9 +21,23 @@ $ bundle
 Run initializer:
 
 ```bash
-$ rails generate cartify:install
+$ rails generate cartify:install --scope initializer
 ```
-This will create the initializer for Cartify (`config/initializers/cartify.rb`) and make modifications to your routes table (`config/routes.rb`) and your main JavaScript file (`app/assets/javascripts/application.js`).
+This will create the initializer for Cartify (`config/initializers/cartify.rb`).
+
+You have 3 other options (`--scope`) you can put in to the generator:
+
+```bash
+--scope assets
+--scope routes
+--scope all
+```
+
+ `--scope routes` makes modifications to your routes table (`config/routes.rb`)
+ 
+ `--scope assets` makes modifications to your JavaScript file (`app/assets/javascripts/application.js`) and CSS (`app/assets/stylesheets/application.css`).
+
+ `--scope all` makes all above mentioned modifications.
 
 Clone the necessay migrations:
 
@@ -87,6 +101,12 @@ end
 ## Views
 Cartify comes with a full set of views. If you want to modify them, you can copy selected ones to your application (`app/views/cartify`). The most relevant views are related to the checkout flow. You can copy them using a generator:
 
+```
+$ rails generate cartify:views
+```
+
+This generator comes with a custom flag: `scope`. You can use it to copy the vies, the partials or both:
+
 ```bash
 To copy views:
 $ rails generate cartify:views --scope checkout_views 
@@ -98,11 +118,9 @@ To copy both partials and views:
 $ rails generate cartify:views --scope all 
 ```
 
-This generator comes with a custom flag: `scope`. You can use it to copy the vies, the partials or both:
+Please note that the copied views are unstyled but include come css classes that are needed for the JavaScript to work (i.e. `.clickable-row`). **Do NOT remove them.** Doing so will break the Cartify functionality. 
 
-```
-$ rails generate cartify:views
-```
+
 
 ## Available helpers
   #### Shop icon helper
@@ -135,10 +153,18 @@ $ rails generate cartify:views
    ```
 
 ### Link to checkout
+You can add a link to the Checkout process anywhere on your views. 
 
 ```
 checkout_link
 ```
+
+Will produce:
+
+```html
+<a id="checkout-link" href="/checkout">Checkout</a>
+```
+
 ## ToDo
 * Move away from jQuery - refactor all js code to use vanilla JavaScript only
 

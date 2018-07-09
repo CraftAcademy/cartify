@@ -11,8 +11,13 @@ module Cartify
         configure_js
         configure_css
         mount_engine
+      elsif @scope == 'initializer'
+        copy_initializer_file
       elsif @scope == 'routes'
         mount_engine
+      elsif @scope == 'assets'
+        configure_js
+        configure_css
       else
         puts 'Please enter a valid scope'
       end
@@ -42,14 +47,12 @@ module Cartify
           *= require cartify/application
         JS
       end
-
     end
 
     def mount_engine
       resources_class = Cartify.product_class.to_s.pluralize(2).downcase
       route "mount Cartify::Engine, at: '/'"
-      route "resources :#{resources_class}, only: [:show]"
-      
+      route "resources :#{resources_class}, only: [:show]"   
     end
   end
 end
