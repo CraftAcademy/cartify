@@ -34,7 +34,7 @@ module Cartify
 
     def configure_js
       inject_into_file 'app/assets/javascripts/application.js',
-                      before: "//= require_tree .\n" do
+                      before: "//= require_tree ." do
         <<~'JS'
           //= require jquery
           //= require cartify/application
@@ -45,7 +45,7 @@ module Cartify
     def configure_layout
       inject_into_file 'app/views/layouts/application.html.haml',
                       after: "%body\n" do
-        <<~'HAML'.indent(2, "\t") 
+        <<~'HAML'.indent(4) 
                   #notifications
                     = alert 
                     = notice

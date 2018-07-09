@@ -8,4 +8,4 @@
       = render 'cartify/checkout/partials/delivery-lg', f: f
     = render 'cartify/checkout/order_summary'
     .text-center
-      = f.submit t('checkout.save_and_continue'), class: 'btn btn-default mb-20'
+      = f.submit t('checkout.save_and_continue'), class: 'btn btn-default mb-20', disabled: true

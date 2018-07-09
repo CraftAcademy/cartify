@@ -8,7 +8,6 @@ module Cartify
   mattr_accessor :price_attribute
 
   def self.product_class
-    binding.pry
     @@product_class.constantize
   end
 
