@@ -14,6 +14,6 @@
       %p.general-address.mb-30= @order.creation_date
   = render 'cartify/checkout/partials/list_of_items', current_order: @order
   .mb-55
-    = render 'cartify/checkout/order_summary', current_order: @order
-    .text-center
-      = link_to t('button.back_to_store'), next_wizard_path, class: 'btn btn-default mb-20'
+  = render 'cartify/checkout/order_summary', current_order: @order
+  .text-center
+    = link_to t('button.back_to_store'), next_wizard_path, class: 'btn btn-default mb-20'

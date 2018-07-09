@@ -1,0 +1,11 @@
+%main.container.general-main-wrap
+  = render 'cartify/checkout/progress'
+  %h3.general-subtitle= t('delivery.delivery_method')
+  = form_for current_order, url: wizard_path do |f|
+    .visible-xs
+      = render 'cartify/checkout/partials/delivery-xs', f: f if false
+    .hidden-xs.mb-res-50
+      = render 'cartify/checkout/partials/delivery-lg', f: f
+    = render 'cartify/checkout/order_summary'
+    .text-center
+      = f.submit t('checkout.save_and_continue'), class: 'btn btn-default mb-20', disabled: true

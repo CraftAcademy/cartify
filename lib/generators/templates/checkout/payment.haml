@@ -1,0 +1,27 @@
+%main.container.mb-res-50
+  = render 'cartify/checkout/progress'
+  %h3.general-subtitle= t('checkout.credit_card')
+  = form_for @credit_card, url: wizard_path, method: :put, html: { class: 'max-600 mb-80' } do |f|
+    .form-group{ class: "#{@credit_card.errors[:number].empty? ? '' : 'has-error'}" }
+      = f.label :number, t('checkout.cart_number'), class: 'control-label input-label'
+      = f.text_field :number, class: 'form-control', placeholder: t('checkout.cart_number')
+      %span.help-block= @credit_card.errors[:number].to_sentence
+    .row
+      .col-sm-6
+        .form-group{ class: "#{@credit_card.errors[:name].empty? ? '' : 'has-error'}" }
+          = f.label :name, t('checkout.name_on_card'), class: 'control-label input-label'
+          = f.text_field :name, class: 'form-control', placeholder: t('checkout.name_on_card')
+          %span.help-block= @credit_card.errors[:name].to_sentence
+      .col-sm-3
+        .form-group{ class: "#{@credit_card.errors[:mm_yy].empty? ? '' : 'has-error'}" }
+          = f.label :mm_yy, t('checkout.mm_yy'), class: 'control-label input-label'
+          = f.text_field :mm_yy, class: 'form-control', placeholder: t('checkout.mm_yy')
+          %span.help-block= @credit_card.errors[:mm_yy].to_sentence
+      .col-sm-3
+        .form-group.relative{ class: "#{@credit_card.errors[:cvv].empty? ? '' : 'has-error'}" }
+          = f.label :cvv, t('checkout.cvv'), class: 'control-label input-label'
+          = f.password_field :cvv, class: 'form-control', placeholder: t('checkout.cvv'), autocomplete: 'off'
+          %span.help-block= @credit_card.errors[:cvv].to_sentence
+          %i.fa.fa-question-circle.general-form-help{'data-toggle': 'tooltip', 'data-placement': :top, title: t('credit_card.tooltip')}
+    = render 'cartify/checkout/order_summary'
+    = f.submit t('checkout.save_and_continue'), class: 'btn btn-default center-block mb-80'

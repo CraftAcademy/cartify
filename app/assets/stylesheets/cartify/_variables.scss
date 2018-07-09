@@ -1,0 +1,187 @@
+//== Colors
+
+$grey-100: #f7f6f6;
+$grey-200: #eeeeee; // #ebebeb, #e8e8e8
+$grey-350: #c3c3c3;
+$grey-600: #8c8c8c;
+$grey-700: #5c5c5c;
+$grey-900: #1e1e1c; // #212121, #181920
+$gold-500: #c69c6d; //#c59c71
+
+$text-colors: (
+              'white'   :  white,
+              grey-200  :  #eeeeee,
+              grey-350  :  #c3c3c3,
+              grey-600  :  #8c8c8c,
+              grey-900  :  #1e1e1c,
+              gold-500  :  #c59c71
+);
+
+@each $color in $text-colors {
+  .in-#{nth($color, 1)} {
+    color: nth($color, 2) !important;
+  }
+  .bg-#{nth($color, 1)} {
+    background-color: nth($color, 2) !important;
+  }
+}
+
+//== Media queries breakpoints
+//
+// Extra small screen / phone
+//** Deprecated `$screen-xs` as of v3.0.1*/
+$screen-xs:                  480px !default;
+//** Deprecated `$screen-xs-min` as of v3.2.0*/
+$screen-xs-min:              $screen-xs !default;
+//** Deprecated `$screen-phone` as of v3.0.1*/
+$screen-phone:               $screen-xs-min !default;
+
+// Small screen / tablet
+//** Deprecated `$screen-sm` as of v3.0.1*/
+$screen-sm:                  768px !default;
+$screen-sm-min:              $screen-sm !default;
+//** Deprecated `$screen-tablet` as of v3.0.1*/
+$screen-tablet:              $screen-sm-min !default;
+
+// Medium screen / desktop
+//** Deprecated `$screen-md` as of v3.0.1*/
+$screen-md:                  992px !default;
+$screen-md-min:              $screen-md !default;
+//** Deprecated `$screen-desktop` as of v3.0.1*/
+$screen-desktop:             $screen-md-min !default;
+
+// Large screen / wide desktop
+//** Deprecated `$screen-lg` as of v3.0.1*/
+$screen-lg:                  1200px !default;
+$screen-lg-min:              $screen-lg !default;
+//** Deprecated `$screen-lg-desktop` as of v3.0.1*/
+$screen-lg-desktop:          $screen-lg-min !default;
+
+// So media queries don't overlap when required, provide a maximum
+$screen-xs-max:              ($screen-sm-min - 1) !default;
+$screen-sm-max:              ($screen-md-min - 1) !default;
+$screen-md-max:              ($screen-lg-min - 1) !default;
+
+//** Point at which the navbar becomes uncollapsed.*/
+$grid-float-breakpoint:     $screen-sm-min !default;
+//** Point at which the navbar begins collapsing.*/
+$grid-float-breakpoint-max: ($grid-float-breakpoint - 1) !default;
+
+//== Typography
+
+$font-family-sans-serif: 'Open Sans', sans-serif !default;
+
+$font-size-base:          14px !default;
+$font-size-large:         ceil(($font-size-base * 1.1)) !default; // ~16px
+$font-size-small:         ceil(($font-size-base * 0.85)) !default; // ~12px
+
+$font-size-h1:            floor(($font-size-base * 1.75)) !default; // ~24px
+$font-size-h2:            floor(($font-size-base * 2.15)) !default; // ~18px
+$font-size-h3:            ceil(($font-size-base * 1.25)) !default; // ~16px
+$font-size-h1-large:      floor(($font-size-base * 2.6)) !default; // ~36px
+
+$line-height-base:        1.5 !default;
+
+$headings-color:          $grey-900 !default;
+$headings-font-weight:    300 !default;
+$headings-line-height:    1.5 !default;
+
+//== Components
+
+$padding-base-vertical:   8px !default;
+$border-radius-base:      0px !default;
+
+//== Buttons
+
+$btn-primary-color:                   white !default;
+$btn-primary-bg:                      $gold-500 !default;
+$btn-primary-border:                  transparent !default;
+
+$btn-default-color:                   white !default;
+$btn-default-bg:                      $grey-900 !default;
+$btn-default-border:                  transparent !default;
+
+$btn-link-disabled-color:             white !default;
+
+$btn-font-weight:                     600 !default;
+$btn-border-radius-base:              0 !default;
+
+// Basics of a navbar
+
+$navbar-height:                       80px !default;
+$navbar-margin-bottom:                60px !default;
+$navbar-padding-horizontal:           15px !default;
+
+$navbar-default-bg:                   transparent !default;
+$navbar-default-border:               transparent !default;
+
+// Navbar links
+
+$navbar-default-link-color:           $grey-600;
+$navbar-default-link-hover-color:     $grey-900;
+
+// Navbar toggle
+$navbar-default-toggle-hover-bg:           transparent;
+$navbar-default-toggle-border-color:       transparent;
+$navbar-default-toggle-icon-bar-bg:        $gold-500;
+
+// Navbar brand label
+
+$navbar-default-brand-color:               $grey-900;
+
+//== Carousel
+$carousel-indicator-border-color:     transparent !default;
+$carousel-indicator-active-bg:        $grey-900 !default;
+$carousel-image-shadow:               14.3px 7.3px 75.2px 4.8px rgba(14, 26, 52, 0.28) !default;
+$carousel-control-color:              $grey-600 !default;
+$carousel-control-font-size:          30px !default;
+
+//== Jumbotron
+
+$jumbotron-bg: white;
+$jumbotron-font-size:          $font-size-h3;
+$jumbotron-heading-font-size:  $font-size-h1-large;
+$jumbotron-padding:            50px;
+
+//== Thumbnails
+
+$thumbnail-bg:               $grey-200;
+$thumbnail-border:           transparent;
+$thumbnail-border-radius:    0;
+$thumbnail-hover-bg:         $gold-500;
+$thumbnail-hover-transition: opacity 0.5s ease-in-out;
+
+//=== Shared nav styles
+
+$nav-link-hover-bg:         transparent !default;
+
+//== Dropdowns
+
+$dropdown-link-color:       $grey-600;
+$dropdown-link-hover-color: white;
+$dropdown-border:           transparent !default;
+$dropdown-fallback-border:  transparent !default;
+$dropdown-divider-bg:        $grey-200;
+$dropdown-link-hover-bg:     $gold-500;
+
+//== Badges
+
+$badge-color:                 $gold-500 !default;
+$badge-bg:                    transparent !default;
+$badge-active-color:          $gold-500 !default;
+$badge-font-weight:           300 !default;
+
+//== Tables
+
+$table-border-color:          transparent !default;
+$table-bg-hover:              $grey-100;
+
+//== Form states and alerts
+
+$state-danger-text:           red !default;
+
+$input-height-base:           36px;
+
+//== Shop icon
+
+$shop-icon-bg:                $gold-500;

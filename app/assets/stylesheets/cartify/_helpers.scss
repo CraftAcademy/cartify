@@ -1,0 +1,79 @@
+.pt-0 {
+  padding-top: 0px !important;
+}
+.pt-10 {
+  padding-top: 10px;
+}
+.pt-20 {
+  padding-top: 20px;
+}
+.pr-15 {
+  padding-right: 15px;
+}
+.pl-0 {
+  padding-left: 0px !important;
+}
+.pl-30 {
+  padding-left: 30px;
+}
+.pb-25 {
+  padding-bottom: 25px;
+}
+.font-16 {
+  font-size: 16px;
+}
+.font-18 {
+  font-size: 18px;
+}
+.fw-300 {
+  font-weight: 300;
+}
+.img-shadow {
+  box-shadow: 14.3px 7.3px 75.2px 4.8px rgba(14, 26, 52, 0.28);
+}
+.cart-img-shadow {
+  box-shadow: 0 5px 27px 3px rgba(14, 26, 52, 0.3);
+}
+.line-height-40 {
+  line-height: 40px;
+}
+.max-240 {
+  max-width: 240px;
+}
+.max-600 {
+  max-width: 600px;
+}
+.width-240 {
+  width: 240px;
+}
+.line-height-2 {
+  line-height: 2;
+}
+.vertical-middle {
+  vertical-align: middle !important;
+}
+.relative {
+  position: relative;
+}
+.mt-0 {
+  margin-top: 0;
+}
+.mt-10 {
+  margin-top: 10px;
+}
+
+@each $size in (5, 10, 15, 20, 35, 55, 240) {
+  .mr-#{$size} {
+    margin-right: #{$size}px !important;
+  }
+}
+@each $size in (10, 20, 30, 40, 60, 70) {
+  .ml-#{$size} {
+    margin-left: #{$size}px !important;
+  }
+}
+@each $size in (0, 5, 10, 15, 20, 25, 30, 35, 40, 55, 60, 80, 120) {
+  .mb-#{$size} {
+    margin-bottom: #{$size}px !important;
+  }
+}

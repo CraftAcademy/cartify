@@ -1,0 +1,27 @@
+%main.container.general-main-wrap
+  = render 'cartify/checkout/progress'
+  .row.mb-20
+    .col-sm-3
+      %h3.general-subtitle= t('settings.shipping')
+      = render 'cartify/checkout/partials/addresses_short', address: @addresses.shipping
+    .col-sm-3
+      %h3.general-subtitle= t('settings.billing')
+      = render 'cartify/checkout/partials/addresses_short', address: @addresses.billing
+    .col-sm-3
+      %h3.general-subtitle= t('confirm.shipments')
+      %p.general-address
+        = current_order.delivery.name
+        %span.general-edit.clickable-step{ 'data-href': wizard_path(:delivery) }=t('confirm.edit')
+        %br
+        = current_order.delivery.duration
+    .col-sm-3
+      %h3.general-subtitle= t('confirm.payment_info')
+      %p.general-address
+        = current_order.secret_card_number
+        %span.general-edit.clickable-step{ 'data-href': wizard_path(:payment) }=t('confirm.edit')
+        %br
+        = current_order.credit_card.mm_yy
+  / = render 'cartify/checkout/partials/list_of_items'
+  = render 'cartify/checkout/order_summary'
+  .text-center
+    = button_to t('checkout.place_order'), wizard_path, method: :put, class: 'btn btn-default mb-20'

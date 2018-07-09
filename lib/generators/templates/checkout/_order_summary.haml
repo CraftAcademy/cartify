@@ -1,4 +1,4 @@
-%div
-  %p= t('cart.summary')
-  %table
+%div{ class: order_summary_text_position }
+  %p.in-gold-500.font-18= t('cart.summary')
+  %table.general-summary-table{ class: order_summary_table_position }
     = render 'cartify/shared/checkout_summary_numbers', current_order: current_order

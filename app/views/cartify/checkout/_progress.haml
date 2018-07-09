@@ -1,21 +1,18 @@
-%h1.general-title-margin= t('cart.checkout')
-%ul.steps.list-inline
-  %li.step.clickable-step{ class: active_step?(:addresses), 'data-href': wizard_path(:addresses) }
-    %span.step-number 1
-    %span.step-text.hidden-xs= t('settings.address')
-  %li.step-divider
-  %li.step.clickable-step{ class: active_step?(:delivery), 'data-href': wizard_path(:delivery) }
-    %span.step-number 2
-    %span.step-text.hidden-xs=t('confirm.delivery')
-  %li.step-divider
-  %li.step.clickable-step{ class: active_step?(:payment), 'data-href': wizard_path(:payment) }
-    %span.step-number 3
-    %span.step-text.hidden-xs=t('confirm.paymant')
-  %li.step-divider
-  %li.step.clickable-step{ class: active_step?(:confirm), 'data-href': wizard_path(:confirm) }
-    %span.step-number 4
-    %span.step-text.hidden-xs=t('confirm.confirm')
-  %li.step-divider
-  %li.step.clickable-step{ class: active_step?(:complete), 'data-href': wizard_path(:complete) }
-    %span.step-number 5
-    %span.step-text.hidden-xs=t('confirm.complete')
+%nav{aria: {label: "breadcrumb"}}
+  %ol.steps.breadcrumb
+    %li.breadcrumb-item.clickable-step{ class: active_step?(:addresses), 'data-href': wizard_path(:addresses) }
+      %span.step-number 1
+      %span.step-text.hidden-xs= t('settings.address')
+    %li.breadcrumb-item.clickable-step{ class: active_step?(:delivery), 'data-href': wizard_path(:delivery) }
+      %span.step-number 2
+      %span.step-text.hidden-xs=t('confirm.delivery')
+    %li.breadcrumb-item.clickable-step{ class: active_step?(:payment), 'data-href': wizard_path(:payment) }
+      %span.step-number 3
+      %span.step-text.hidden-xs=t('confirm.paymant')
+    %li.breadcrumb-item.clickable-step{ class: active_step?(:confirm), 'data-href': wizard_path(:confirm) }
+      %span.step-number 4
+      %span.step-text.hidden-xs=t('confirm.confirm')
+    %li.breadcrumb-item.clickable-step{ class: active_step?(:complete), 'data-href': wizard_path(:complete) }
+      %span.step-number 5
+      %span.step-text.hidden-xs=t('confirm.complete')
+

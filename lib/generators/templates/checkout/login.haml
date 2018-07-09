@@ -1,0 +1,41 @@
+%main.container.general-main-wrap
+  .hidden-xs.hidden-sm
+    .row
+      .col-md-5.mb-40
+        .visible-xs.visible-sm
+        - if main_app.respond_to?(:user_facebook_omniauth_authorize_path)
+          .text-center
+            %h3.general-subtitle.mt-0= t('checkout.returning_customer')
+            %a.general-login-icon{ href: main_app.user_facebook_omniauth_authorize_path }
+              %i.fa.fa-facebook-official
+            %p.general-login-text= t('checkout.or')
+        = form_with url:  main_app.user_session_path, scope: :user, local: true, class: 'general-form' do |f|
+          .form-group.mb-40
+            %p.fw-600= t('checkout.login_with_password')
+            = f.label :email, t('checkout.enter_email'), class: 'control-label input-label', for: :login_email
+            = f.email_field :email, placeholder: t('checkout.enter_email'), autofocus: true, class: 'form-control', id: :login_email
+          .form-group.mb-40
+            = f.label :password, t('settings.password'), class: 'control-label input-label', for: :login_password
+            = f.password_field :password, placeholder: t('settings.password'), class: 'form-control', id: :login_password
+            %a.help-block.in-gold-500{ href:  main_app.new_user_password_path }= t('button.forgot_password')
+          .text-left
+          = f.submit t('checkout.login_with_password'), class: 'button btn btn-default mb-20'
+      .col-md-5.mb-40
+        .visible-xs.visible-sm
+        - if main_app.respond_to?(:user_facebook_omniauth_authorize_path)
+          .text-center
+            %h3.general-subtitle.mt-0= t('checkout.new_customer')
+            %a.general-login-icon{href:  main_app.user_facebook_omniauth_authorize_path}
+              %i.fa.fa-facebook-official
+            %p.general-login-text= t('checkout.or')
+        = form_with url:  main_app.user_registration_path, scope: :user, local: true, class: 'general-form' do |f|
+          .form-group.mb-40
+            %p.fw-600= t('checkout.quick_register')
+            %p.fw-300= t('checkout.quick_description')
+            = f.label :email, t('checkout.enter_email'), class: 'control-label input-label'
+            = f.email_field :email, placeholder: t('checkout.enter_email'), class: 'form-control'
+            - password = Devise.friendly_token.first(10) + '1zZ'
+            = f.hidden_field :password, value: password
+            = f.hidden_field :password_confirmation, value: password
+          .text-left
+          = f.submit t('checkout.continue'), class: 'button btn btn-default mb-20'
