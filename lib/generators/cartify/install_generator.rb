@@ -18,6 +18,7 @@ module Cartify
       elsif @scope == 'assets'
         configure_js
         configure_css
+        configure_layout
       else
         puts 'Please enter a valid scope'
       end
@@ -37,6 +38,18 @@ module Cartify
           //= require jquery
           //= require cartify/application
         JS
+      end
+    end
+
+    def configure_layout
+      inject_into_file 'app/assets/views/layouts/application.html.haml',
+                      after: "%body\n" do
+        <<~ 'HAML'
+              #notifications
+                = alert 
+                = notice
+        HAML
+
       end
     end
 
