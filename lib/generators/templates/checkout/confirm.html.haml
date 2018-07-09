@@ -11,14 +11,14 @@
   %h3= t('confirm.shipments')
   %p
     = current_order.delivery.name
-    %span{ 'data-href': wizard_path(:delivery) }= t('confirm.edit')
+    %span.clickable-step{ 'data-href': wizard_path(:delivery) }= t('confirm.edit')
     %br
     = current_order.delivery.duration
 %div
   %h3= t('confirm.payment_info')
   %p
     = current_order.secret_card_number
-    %span{ 'data-href': wizard_path(:payment) }=t('confirm.edit')
+    %span.clickable-step{ 'data-href': wizard_path(:payment) }=t('confirm.edit')
     %br
     = current_order.credit_card.mm_yy
 = render 'cartify/checkout/order_summary'

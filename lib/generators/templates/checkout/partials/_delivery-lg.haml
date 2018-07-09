@@ -1,12 +1,12 @@
-%table.table.table-hover
+%table
   %thead
     %tr
-      %th.col-method
-        %span.in-grey-600.ml-40= t('delivery.method')
       %th
-        %span.in-grey-600= t('delivery.days')
+        %span= t('delivery.method')
       %th
-        %span.in-grey-600= t('delivery.price')
+        %span= t('delivery.days')
+      %th
+        %span= t('delivery.price')
   %tbody
     = f.hidden_field :delivery_id
     - @deliveries.each do |delivery| 
@@ -16,4 +16,4 @@
         %td
           %span= delivery.duration
         %td
-          %span.font-16.in-gold-500= number_to_currency delivery.price
+          %span= number_to_currency delivery.price

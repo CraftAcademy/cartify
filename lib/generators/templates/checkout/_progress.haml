@@ -1,17 +1,17 @@
 %h1= t('cart.checkout')
 %ul
-  %li{ class: active_step?(:addresses), 'data-href': wizard_path(:addresses) }
+  %li.clickable-step{ class: active_step?(:addresses), 'data-href': wizard_path(:addresses) }
     %span 1
     %span= t('settings.address')
-  %li{ class: active_step?(:delivery), 'data-href': wizard_path(:delivery) }
+  %li.clickable-step{ class: active_step?(:delivery), 'data-href': wizard_path(:delivery) }
     %span 2
     %span= t('confirm.delivery')
-  %li{ class: active_step?(:payment), 'data-href': wizard_path(:payment) }
+  %li.clickable-step{ class: active_step?(:payment), 'data-href': wizard_path(:payment) }
     %span 3
     %span= t('confirm.paymant')
-  %li{ class: active_step?(:confirm), 'data-href': wizard_path(:confirm) }
+  %li.clickable-step{ class: active_step?(:confirm), 'data-href': wizard_path(:confirm) }
     %span 4
     %span= t('confirm.confirm')
-  %li{ class: active_step?(:complete), 'data-href': wizard_path(:complete) }
+  %li.clickable-step{ class: active_step?(:complete), 'data-href': wizard_path(:complete) }
     %span 5
     %span= t('confirm.complete')
