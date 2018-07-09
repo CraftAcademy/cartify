@@ -10,6 +10,7 @@ module Cartify
     require 'haml-rails'
     require 'tippy_rails'
     require 'bootstrap'
+    require 'pry'
 
     isolate_namespace Cartify
 

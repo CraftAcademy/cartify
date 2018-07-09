@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 module Cartify
-  RSpec.feature 'End to end checkout process', type: :feature do
+  RSpec.feature 'End to end checkout process', type: :feature, js: true do
     let(:user) { create(:customer) }
 
     before do
@@ -17,6 +17,7 @@ module Cartify
       click_link I18n.t('checkout.cart')
       expect(page.current_path).to eq cartify.cart_path
       click_on I18n.t('cart.checkout')
+      sleep 2
       expect(page.current_path).to eq cartify.checkout_path(:addresses)
 
       within('form#new_addresses_form') do
@@ -35,11 +36,13 @@ module Cartify
         fill_in 'addresses_form[shipping][zip]', with: '32158'
         select('Spain', from: 'addresses_form[billing][country]')
         fill_in 'addresses_form[shipping][phone]', with: '+112 34 567 8998'
+
         find('input[name="commit"]').click
       end
 
       expect(page.current_path).to eq cartify.checkout_path(:delivery)
-      all('.radio-label').first.click
+      all('.delivery-row').first.click
+
       find('input[name="commit"]').click
       expect(page.current_path).to eq cartify.checkout_path(:payment)
 

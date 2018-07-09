@@ -15,8 +15,8 @@ module Cartify
       render_wizard
     end
 
-    def update
-      current_order.update_attribute(:user, current_user) if current_step?(:addresses)
+    def update 
+      current_order.update_attribute(:user, current_cartify_user) if current_step?(:addresses) && current_order.respond_to?(:user)
       send("update_#{step}")
       redirect_to next_wizard_path unless performed?
     end
@@ -25,6 +25,10 @@ module Cartify
 
     def no_items_in_cart?
       current_order.order_items.empty? && !current_step?(:complete)
+    end
+
+    def current_cartify_user
+      send("current_#{Cartify.user_class.name.downcase}".to_sym)
     end
   end
 end

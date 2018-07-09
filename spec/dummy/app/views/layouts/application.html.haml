@@ -8,10 +8,12 @@
     = javascript_include_tag 'application'
   %body
     %span.shop-icon= shop_icon_quantity
-    #flash-display
+    %span= checkout_link
+
+    #notifications
   .container
     - flash.each do |type, msg|
-      %div{:class => "alert alert-#{type == 'notice' ? 'info' : type} fadeout", 'data-dismiss': 'alert'}
+      %div{class: "alert alert-#{type == 'notice' ? 'info' : type} fadeout", 'data-dismiss': 'alert'}
         %button.close &times;
         = msg if msg.is_a?(String)
     = link_to I18n.t('cart.cart'), cartify.cart_path

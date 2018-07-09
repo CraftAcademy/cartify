@@ -11,7 +11,7 @@ module Cartify
     def checkout_link
       qty = current_order.order_items.reload.collect(&:quantity).compact.sum
       unless qty.zero?
-        link_to 'Checkout', cartify.checkout_index_path, id: 'checkout-link'
+        link_to 'Proceed to checkout', cartify.checkout_index_path, id: 'checkout-link'
       end
     end
   end

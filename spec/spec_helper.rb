@@ -4,8 +4,9 @@ require 'capybara/rspec'
 require 'transactional_capybara/rspec'
 #require 'factory_bot_rails'
 require 'database_cleaner'
-#require 'chromedriver_helper'
-#Chromedriver.set_version '2.36' unless ENV['CI'] == 'true'
+require "selenium-webdriver"
+require 'chromedriver/helper'
+Chromedriver.set_version '2.36' unless ENV['CI'] == 'true'
 
 chrome_options = %w(no-sandbox disable-popup-blocking disable-infobars)
 chrome_options << 'headless' if ENV['CI'] == 'true'
@@ -15,10 +16,19 @@ Capybara.register_driver :chrome do |app|
       args: chrome_options
   )
 
+  # Possible options to use
+  # headless 
+  # auto-open-devtools-for-tabs
+
+  client = Selenium::WebDriver::Remote::Http::Default.new
+  client.open_timeout = 100000
+  client.read_timeout = 100000
+
   Capybara::Selenium::Driver.new(
       app,
       browser: :chrome,
-      options: options
+      options: options, 
+      http_client: client
   )
 end
 
