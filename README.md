@@ -89,6 +89,9 @@ Note, if you don't have a controller for your products, you can use a generator 
 ```bash
 $ rails g controller products show # or whatever class you use for products
 ```
+## Helpers and Session
+
+Cartify comes with some helper methods that will make it easy to integrate into your application's flow. 
 
 Modify your `ApplicationController` to include the Cartify methods and helpers:
 
@@ -98,6 +101,50 @@ class ApplicationController < ActionController::Base
     include Cartify::CurrentSession
 end
 ```
+
+### Available helpers
+#### Shop icon helper
+```ruby
+shop_icon_quantity
+```
+Will produce:
+```html
+<span class="shop-icon">
+  <span class="shop-quantity" id="order-details">1 item</span>
+</span>
+```
+#### Add to cart link helper
+```ruby
+add_to_cart(product, quantity, button_name)
+# product -     name of your selling product (required!)
+# quantity -    how many goods you with put into cart (default: 1)
+# button_name - button name (default: "Add to cart")
+```
+Or customize as you with:
+```ruby
+'helper link':            cartify.order_items_path()
+'required params':        order_item: {quantity: quantity, product_id: product.id}
+'use method':             method: :post
+'asynchronously':         remote: true
+
+# Example:
+  link_to cartify.order_items_path(order_item: {quantity: 7, product_id: product.id}), 
+    { method: :post, remote: true }
+  ```
+
+### Link to checkout
+You can add a link to the Checkout process anywhere on your views. 
+
+```
+checkout_link
+```
+
+Will produce:
+
+```html
+<a id="checkout-link" href="/checkout">Checkout</a>
+```
+
 ## Views
 Cartify comes with a full set of views. If you want to modify them, you can copy selected ones to your application (`app/views/cartify`). The most relevant views are related to the checkout flow. You can copy them using a generator:
 
@@ -122,48 +169,7 @@ Please note that the copied views are unstyled but include come css classes that
 
 
 
-## Available helpers
-  #### Shop icon helper
-  ```ruby
-  shop_icon_quantity
-  ```
-  Will produce:
-  ```html
- <span class="shop-icon">
-    <span class="shop-quantity" id="order-details">1 item</span>
-  </span>
-  ```
-  #### Add to cart link helper
-  ```ruby
-  add_to_cart(product, quantity, button_name)
-  # product -     name of your selling product (required!)
-  # quantity -    how many goods you with put into cart (default: 1)
-  # button_name - button name (default: "Add to cart")
-  ```
-  Or customize as you with:
-  ```ruby
-  'helper link':            cartify.order_items_path()
-  'required params':        order_item: {quantity: quantity, product_id: product.id}
-  'use method':             method: :post
-  'asynchronously':         remote: true
 
-  # Example:
-    link_to cartify.order_items_path(order_item: {quantity: 7, product_id: product.id}), 
-      { method: :post, remote: true }
-   ```
-
-### Link to checkout
-You can add a link to the Checkout process anywhere on your views. 
-
-```
-checkout_link
-```
-
-Will produce:
-
-```html
-<a id="checkout-link" href="/checkout">Checkout</a>
-```
 
 ## ToDo
 * Move away from jQuery - refactor all js code to use vanilla JavaScript only
