@@ -8,7 +8,8 @@ module Cartify
       @scope = options['scope']
       if @scope == 'all'
         copy_initializer_file
-        install_js
+        configure_js
+        configure_css
         mount_engine
       elsif @scope == 'routes'
         mount_engine
@@ -24,7 +25,7 @@ module Cartify
       copy_file 'initializer.rb', 'config/initializers/cartify.rb'
     end
 
-    def install_js
+    def configure_js
       inject_into_file 'app/assets/javascripts/application.js',
                       before: "//= require_tree .\n" do
         <<~'JS'
@@ -32,6 +33,16 @@ module Cartify
           //= require cartify/application
         JS
       end
+    end
+
+    def configure_css
+      inject_into_file 'app/assets/javascripts/application.js',
+                      before: "*= require_tree .\n" do
+        <<~'JS'
+          *= require cartify/application
+        JS
+      end
+
     end
 
     def mount_engine

@@ -132,4 +132,4 @@ en:
   validation:
     cart_number: 'Please enter a valid credit card number'
     cart_name: 'Allow only letters'
-    mm_yy: 'Mons can be from 01 to 12'
+    mm_yy: 'Months can be from 01 to 12'

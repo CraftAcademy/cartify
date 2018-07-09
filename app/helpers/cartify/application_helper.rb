@@ -19,7 +19,7 @@ module Cartify
 
     def image_for(obj)
       begin
-          obj.product_image 
+          obj.image 
       rescue => exception
           'https://vignette.wikia.nocookie.net/teenage-mutant-ninja-turtles-2012-series/images/f/fd/Pizza_trad_pepperoni.png/revision/latest?cb=20161106191944'
       end
