@@ -10,6 +10,7 @@ module Cartify
         copy_initializer_file
         configure_js
         configure_css
+        configure_layout
         mount_engine
       elsif @scope == 'initializer'
         copy_initializer_file
@@ -42,19 +43,18 @@ module Cartify
     end
 
     def configure_layout
-      inject_into_file 'app/assets/views/layouts/application.html.haml',
+      inject_into_file 'app/views/layouts/application.html.haml',
                       after: "%body\n" do
-        <<~ 'HAML'
-              #notifications
-                = alert 
-                = notice
+        <<~'HAML'.indent(2, "\t") 
+                  #notifications
+                    = alert 
+                    = notice
         HAML
-
       end
     end
 
     def configure_css
-      inject_into_file 'app/assets/javascripts/application.js',
+      inject_into_file 'app/assets/stylesheets/application.css',
                       before: "*= require_tree .\n" do
         <<~'JS'
           *= require cartify/application
