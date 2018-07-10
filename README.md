@@ -163,6 +163,10 @@ $ rails generate cartify:views --scope checkout_partials
 
 To copy both partials and views:
 $ rails generate cartify:views --scope all 
+
+
+To copy unstyled partials and views (if you want to modify/add css:
+$ rails generate cartify:views --scope unstyled
 ```
 
 Please note that the copied views are unstyled but include come css classes that are needed for the JavaScript to work (i.e. `.clickable-row`). **Do NOT remove them.** Doing so will break the Cartify functionality. 
