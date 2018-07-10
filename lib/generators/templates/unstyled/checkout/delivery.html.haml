@@ -1,0 +1,11 @@
+= render 'cartify/checkout/progress'
+%h3 Custom template 
+%p (please modify with your own css)
+%h3= t('delivery.delivery_method')
+= form_for current_order, url: wizard_path do |f|
+  %div
+    = render 'cartify/checkout/partials/delivery-lg', f: f
+  %div
+    = render 'cartify/checkout/order_summary'
+  %div
+    = f.submit t('checkout.save_and_continue'), disabled: true

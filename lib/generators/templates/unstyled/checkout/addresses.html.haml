@@ -1,0 +1,28 @@
+= render 'cartify/checkout/progress'
+%h3 Custom template 
+%p (please modify with your own css)
+= form_for @addresses, url: wizard_path, method: :put do |f|
+  %div
+    %h3= t('settings.billing')
+    %p all fields are required
+  %div
+    %h3= t('settings.shipping')
+  %div
+    %h3= t('settings.billing')
+    %p all fields are required
+    = f.fields_for @addresses.billing do |ff|
+      - bill_errors = @addresses.billing.errors
+      = render 'cartify/shared/address', ff: ff, errors: bill_errors
+      = f.hidden_field "[billing][order_id]", value: current_order.id
+  %div
+    %h3= t('settings.shipping')
+    = f.fields_for @addresses.shipping do |ff|
+      - ship_errors = @addresses.shipping.errors
+      = render 'cartify/shared/address', ff: ff, errors: ship_errors
+      = f.hidden_field "[shipping][order_id]", value: current_order.id
+
+      = f.check_box :use_billing, id: 'use_billing', hidden: true
+      %span= t('settings.use_billing')
+  %div
+    = render 'cartify/checkout/order_summary'
+    = f.submit t('checkout.save_and_continue')

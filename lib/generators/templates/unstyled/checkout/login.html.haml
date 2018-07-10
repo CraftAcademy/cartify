@@ -1,0 +1,34 @@
+%h3 Custom User Authorization template
+%p (please modify with your own css)
+- if main_app.respond_to?(:user_facebook_omniauth_authorize_path)
+    %h3= t('checkout.returning_customer')
+    %a{ href: main_app.user_facebook_omniauth_authorize_path }
+    %p= t('checkout.or')
+= form_with url:  main_app.user_session_path, scope: :user, local: true do |f|
+    %div
+        %p= t('checkout.login_with_password')
+        = f.label :email, t('checkout.enter_email'), class: 'control-label input-label', for: :login_email
+        = f.email_field :email, placeholder: t('checkout.enter_email'), autofocus: true, id: :login_email
+    %div
+        = f.label :password, t('settings.password'), class: 'control-label input-label', for: :login_password
+        = f.password_field :password, placeholder: t('settings.password'), id: :login_password
+        %a.help-block.in-gold-500{ href:  main_app.new_user_password_path }= t('button.forgot_password')
+    %div
+        = f.submit t('checkout.login_with_password')
+
+- if main_app.respond_to?(:user_facebook_omniauth_authorize_path)
+    %div
+        %h3= t('checkout.new_customer')
+        %a{href:  main_app.user_facebook_omniauth_authorize_path}
+        %p= t('checkout.or')
+= form_with url:  main_app.user_registration_path, scope: :user, local: true do |f|
+    %div
+        %p= t('checkout.quick_register')
+        %p= t('checkout.quick_description')
+        = f.label :email, t('checkout.enter_email')
+        = f.email_field :email, placeholder: t('checkout.enter_email')
+        - password = Devise.friendly_token.first(10) + '1zZ'
+        = f.hidden_field :password, value: password
+        = f.hidden_field :password_confirmation, value: password
+    %div
+        = f.submit t('checkout.continue')

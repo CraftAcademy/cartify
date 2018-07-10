@@ -1,0 +1,19 @@
+%table
+  %thead
+    %tr
+      %th
+        %span= t('delivery.method')
+      %th
+        %span= t('delivery.days')
+      %th
+        %span= t('delivery.price')
+  %tbody
+    = f.hidden_field :delivery_id
+    - @deliveries.each do |delivery| 
+      %tr.delivery-row{data:{delivery: delivery.id}}
+        %td
+          %span= delivery.name
+        %td
+          %span= delivery.duration
+        %td
+          %span= number_to_currency delivery.price
