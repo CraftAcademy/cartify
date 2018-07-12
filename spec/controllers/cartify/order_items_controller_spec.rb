@@ -9,7 +9,7 @@ module Cartify
     before { sign_in(user) }
 
     describe 'POST #create' do
-      let(:create_params) { { order_item: { "#{Cartify.user_class.to_s.downcase}_id".to_sym product.id, quantity: 1 } } }
+      let(:create_params) { { order_item: { "#{Cartify.user_class.to_s.downcase}_id".to_sym => product.id, quantity: 1 } } }
       before { post :create, xhr: true, params: create_params }
 
       it 'returns http success' do

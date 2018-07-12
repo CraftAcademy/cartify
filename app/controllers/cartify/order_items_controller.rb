@@ -4,7 +4,7 @@ module Cartify
   class OrderItemsController < Cartify::ApplicationController
     def create
       current_order.save
-      @order_item = current_order.order_items.find_or_initialize_by("#{Cartify.user_class.to_s.downcase}_id".to_sym order_item_params["#{Cartify.user_class.to_s.downcase}_id".to_sym])
+      @order_item = current_order.order_items.find_or_initialize_by("#{Cartify.user_class.to_s.downcase}_id".to_sym => order_item_params["#{Cartify.user_class.to_s.downcase}_id".to_sym])
       session[:order_id] = current_order.id if update_quantity.save
     end
 
