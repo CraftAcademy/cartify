@@ -9,7 +9,7 @@ class CreateCartifyAddresses < ActiveRecord::Migration[5.2]
       t.integer :zip
       t.string :country
       t.string :phone
-      t.integer :user_id, foreign_key: true
+      t.integer "#{Cartify.user_class.to_s.downcase}_id".to_sym, foreign_key: true
       t.references :order,
                     foreign_key: { to_table: :cartify_orders }
     end

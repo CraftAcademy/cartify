@@ -10,7 +10,7 @@ module Cartify
     validate :order_present
 
     before_save :finalize
-    default_scope { order(product_id: :asc) }
+    default_scope { order("#{Cartify.user_class.to_s.downcase}_id".to_sym :asc) }
 
     def unit_price
       return self[:unit_price] if persisted?
