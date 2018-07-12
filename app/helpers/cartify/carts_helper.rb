@@ -3,7 +3,7 @@ module Cartify
     def add_to_cart(product, qqty = 1, name = 'Add to cart')
       binding.pry
       link_to name,
-              cartify.order_items_path(order_item: { quantity: qqty, "#{Cartify.product_class.to_s.downcase}_id".to_sym: product&.id }),
+              cartify.order_items_path(order_item: { quantity: qqty, "#{Cartify.product_class.to_s.downcase}_id".to_sym product&.id }),
               method: :post,
               remote: true,
               data: {turbolinks: false}
