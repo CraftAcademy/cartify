@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :product, class: 'Product' do
+  factory :product, class: "#{Cartify.product_class.name}" do
     transient do
       cost 555.55
     end
