@@ -4,7 +4,7 @@ class CreateCartifyOrderItems < ActiveRecord::Migration[5.2]
       t.integer :quantity
       t.decimal :unit_price, precision: 8, scale: 2
       t.decimal :total_price, precision: 8, scale: 2
-      t.integer :product_id, foreign_key: true
+      t.integer "#{Cartify.product_class.to_s.downcase}_id".to_sym, foreign_key: true
       t.references :order,
                     foreign_key: { to_table: :cartify_orders }
 

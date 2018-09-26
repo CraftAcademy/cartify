@@ -9,7 +9,7 @@ module Cartify
     has_many :addresses, dependent: :destroy
     has_one :billing
     has_one :shipping
-    has_many :products, class_name: Cartify.product_class.to_s, through: :order_items
+    has_many Cartify.product_class.to_s.downcase.pluralize(2).to_sym, class_name: Cartify.product_class.to_s, through: :order_items
     before_validation :set_order_status, on: :create
     before_save :update_subtotal, :update_total, :connect_to_user
 
