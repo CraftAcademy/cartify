@@ -7,7 +7,7 @@ module Cartify
     it { expect(subject).to belong_to :order }
 
     let(:product) { create(:product, price: 12.66) }
-    let(:params) { [:order_item, unit_price: 77.77, product_id: product.id, quantity: 2] }
+    let(:params) { [:order_item, unit_price: 77.77, "#{Cartify.product_class.to_s.downcase}_id".to_sym => product.id, quantity: 2] }
 
     it 'return product price before adding to cart' do
       order_i = build(*params)

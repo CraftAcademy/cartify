@@ -4,7 +4,12 @@ This gem is a resource to be user in the SlowFood Online Challenge from Week 5 o
 
 Shopping cart with a multi-step checkout, easily mounted into Rails application.
 
+Note - Cartify is js enhanced so, for feature testing, you will need to use a js enabled driver. 
+
 ## Installation
+
+Note that Cartify need to authenticate a user and depends on [Devise](https://github.com/plataformatec/devise). We advice you to set up Devise right away. 
+
 Add this line to your application's Gemfile:
 
 ```ruby
@@ -20,16 +25,16 @@ $ bundle
 Run initializer:
 
 ```bash
-$ rails generate cartify:install --scope initializer
+$ rails generate cartify:install --scope all
 ```
-This will create the initializer for Cartify (`config/initializers/cartify.rb`).
+This will create the initializer, routes, and modify your assets for Cartify (`config/initializers/cartify.rb`).
 
-You have 3 other options (`--scope`) you can put in to the generator:
+You have 3 other options (`--scope`) you can put in to the generator instead of `scope --all`:
 
 ```bash
 --scope assets
 --scope routes
---scope all
+--scope initializer
 ```
 
  `--scope routes` makes modifications to your routes table (`config/routes.rb`)
@@ -37,6 +42,13 @@ You have 3 other options (`--scope`) you can put in to the generator:
  `--scope assets` makes modifications to your JavaScript file (`app/assets/javascripts/application.js`) and CSS (`app/assets/stylesheets/application.css`).
 
  `--scope all` makes all above mentioned modifications.
+
+ Remember - If you only add initializer,
+ ```bash
+$ rails generate cartify:install --scope initilaizer
+```
+you need to manually modify your assets and routes. 
+
 
 Clone the necessay migrations:
 
@@ -49,7 +61,7 @@ Run the migrations:
 $ rails db:migrate
 ```
 
-Note that Cartify need to authenticate a user and depends on [Devise](https://github.com/plataformatec/devise). If you don't have a User model, generate a simple one to start with and configure Devise at a later stage.
+If you don't have Devise installed yet, for some reason, you can generate a simple User model to start with and configure Devise at a later stage.
 
 ```bash
 $ rails g model user name:string

@@ -4,7 +4,9 @@ module Cartify
   class OrderItemsController < Cartify::ApplicationController
     def create
       current_order.save
-      @order_item = current_order.order_items.find_or_initialize_by(product_id: order_item_params[:product_id])
+      @order_item = current_order.order_items.find_or_initialize_by("#{Cartify.product_class.to_s.downcase}_id".to_sym => order_item_params["#{Cartify.product_class.to_s.downcase}_id".to_sym])
+      #item = OrderItem.first_or_create(dish_id: order_item_params[:dish_id], order: current_order, quantity: order_item_params[:quantity])
+      #@order_item = current_order.order_items.find_or_initialize_by(dish_id: order_item_params[:dish_id])
       session[:order_id] = current_order.id if update_quantity.save
     end
 
@@ -23,7 +25,7 @@ module Cartify
     private
 
     def order_item_params
-      params.require(:order_item).permit(:quantity, :product_id)
+      params.require(:order_item).permit(:quantity, "#{Cartify.product_class.to_s.downcase}_id".to_sym)
     end
 
     def update_quantity
