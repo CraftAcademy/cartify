@@ -10,7 +10,7 @@ module Cartify
     require 'haml-rails'
     require 'tippy_rails'
     require 'bootstrap'
-    require 'pry'
+    require 'pry' unless Rails.env.production?
 
     isolate_namespace Cartify
 
