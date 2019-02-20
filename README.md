@@ -27,6 +27,8 @@ Run initializer:
 ```bash
 $ rails generate cartify:install --scope all
 ```
+**If you have a problem running the `$ rails generate cartify:install --scope all` command please run the scopes one by one**
+
 This will create the initializer, routes, and modify your assets for Cartify (`config/initializers/cartify.rb`).
 
 You have 3 other options (`--scope`) you can put in to the generator instead of `scope --all`:
