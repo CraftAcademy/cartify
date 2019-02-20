@@ -97,7 +97,7 @@ Rails.application.routes.draw do
   resources :products, only: [:show]
 end
 ```
-Note, if you don't have a controller for your products, you can use a generator to create one (some of the Cartify view templates links to the show page of your product class.
+**Note: If you don't have a controller for your products, you can use a generator to create one (some of the Cartify view templates links to the show page of your product class.**
 
 ```bash
 $ rails g controller products show # or whatever class you use for products
