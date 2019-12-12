@@ -33,7 +33,7 @@ module Cartify
     end
 
     def configure_js
-      inject_into_file 'app/assets/javascripts/application.js',
+      inject_into_file 'app/javascript/packs/application.js',
                       before: "//= require_tree ." do
         <<~'JS'
           //= require jquery
