@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
 
   s.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']
 
-  s.add_dependency 'rails', '~> 5.1', '>= 6.0.1'
+  s.add_dependency 'rails', '~> 5.1', '>= 6.0'
   s.add_dependency 'turbolinks', '~> 5'
   s.add_dependency 'virtus', '~> 1.0', '>= 1.0.5'
   s.add_dependency 'wicked', '~> 1.3', '>= 1.3.2'
